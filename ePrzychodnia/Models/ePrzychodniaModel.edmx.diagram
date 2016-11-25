@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0c347ec0a69b4eecaac6c17514725183" Name="Diagram1">
+        <EntityTypeShape EntityType="ePrzychodniaModel.adres" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ePrzychodniaModel.AspNetRoles" Width="1.5" PointX="10.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ePrzychodniaModel.AspNetUserClaims" Width="1.5" PointX="15.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="ePrzychodniaModel.AspNetUserLogins" Width="1.5" PointX="15.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ePrzychodniaModel.AspNetUsers" Width="1.5" PointX="13" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ePrzychodniaModel.badanie" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ePrzychodniaModel.choroba" Width="1.5" PointX="8.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="ePrzychodniaModel.godziny_przyjec" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ePrzychodniaModel.lekarz" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ePrzychodniaModel.pacjent" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ePrzychodniaModel.recepta" Width="1.5" PointX="8.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ePrzychodniaModel.skierowanie" Width="1.5" PointX="8.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ePrzychodniaModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ePrzychodniaModel.wizyta" Width="1.5" PointX="10.5" PointY="5.875" IsExpanded="true" />
+        <AssociationConnector Association="ePrzychodniaModel.FK_pacjent_adres" ManuallyRouted="false" />
+        <AssociationConnector Association="ePrzychodniaModel.FK_pracownik_adres" ManuallyRouted="false" />
+        <AssociationConnector Association="ePrzychodniaModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ePrzychodniaModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ePrzychodniaModel.FK_badanie_lekarz" ManuallyRouted="false" />
+        <AssociationConnector Association="ePrzychodniaModel.FK_badanie_pacjent" ManuallyRouted="false" />
+        <AssociationConnector Association="ePrzychodniaModel.FK_wizyta_badanie" ManuallyRouted="false" />
+        <AssociationConnector Association="ePrzychodniaModel.FK_wizyta_choroba" ManuallyRouted="false" />
+        <AssociationConnector Association="ePrzychodniaModel.FK_godziny_przyjec_pracownik" ManuallyRouted="false" />
+        <AssociationConnector Association="ePrzychodniaModel.FK_recepta_pracownik" ManuallyRouted="false" />
+        <AssociationConnector Association="ePrzychodniaModel.FK_recepta_pacjent" ManuallyRouted="false" />
+        <AssociationConnector Association="ePrzychodniaModel.FK_wizyta_recepta" ManuallyRouted="false" />
+        <AssociationConnector Association="ePrzychodniaModel.FK_wizyta_skierowanie" ManuallyRouted="false" />
+        <AssociationConnector Association="ePrzychodniaModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

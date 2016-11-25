@@ -1,0 +1,1052 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ePrzychodniaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="adres">
+          <Key>
+            <PropertyRef Name="id_adres" />
+          </Key>
+          <Property Name="id_adres" Type="int" Nullable="false" />
+          <Property Name="kraj" Type="varchar" MaxLength="50" />
+          <Property Name="wojewodztwo" Type="varchar" MaxLength="50" />
+          <Property Name="miasto" Type="varchar" MaxLength="50" />
+          <Property Name="kod_pocztowy" Type="varchar" MaxLength="6" />
+          <Property Name="ulica" Type="varchar" MaxLength="50" />
+          <Property Name="nr_budynku" Type="int" />
+          <Property Name="nr_domu" Type="int" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="badanie">
+          <Key>
+            <PropertyRef Name="id_badanie" />
+          </Key>
+          <Property Name="id_badanie" Type="int" Nullable="false" />
+          <Property Name="id_lekarz" Type="int" />
+          <Property Name="id_pacjent" Type="int" />
+          <Property Name="opis_badania" Type="varchar" MaxLength="250" />
+          <Property Name="data_badania" Type="date" />
+        </EntityType>
+        <EntityType Name="choroba">
+          <Key>
+            <PropertyRef Name="id_choroba" />
+          </Key>
+          <Property Name="id_choroba" Type="int" Nullable="false" />
+          <Property Name="nazwa_choroby" Type="varchar" MaxLength="50" />
+          <Property Name="objawy" Type="varchar" MaxLength="100" />
+          <Property Name="diagnoza" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="godziny_przyjec">
+          <Key>
+            <PropertyRef Name="id_godziny_przyjec" />
+          </Key>
+          <Property Name="id_godziny_przyjec" Type="int" Nullable="false" />
+          <Property Name="id_pracownik" Type="int" />
+          <Property Name="dzien_tygodnia" Type="varchar" MaxLength="50" />
+          <Property Name="godz_od" Type="datetime" />
+          <Property Name="godz_do" Type="datetime" />
+        </EntityType>
+        <EntityType Name="lekarz">
+          <Key>
+            <PropertyRef Name="id_lekarz" />
+          </Key>
+          <Property Name="id_lekarz" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_adres" Type="int" />
+          <Property Name="nazwisko" Type="varchar" MaxLength="50" />
+          <Property Name="imie" Type="varchar" MaxLength="50" />
+          <Property Name="pesel" Type="varchar" MaxLength="11" />
+          <Property Name="telefon" Type="varchar" MaxLength="9" />
+        </EntityType>
+        <EntityType Name="pacjent">
+          <Key>
+            <PropertyRef Name="id_pacjent" />
+          </Key>
+          <Property Name="id_pacjent" Type="int" Nullable="false" />
+          <Property Name="id_adres" Type="int" />
+          <Property Name="nazwisko" Type="varchar" MaxLength="50" />
+          <Property Name="imie" Type="varchar" MaxLength="50" />
+          <Property Name="wiek" Type="int" />
+          <Property Name="pesel" Type="varchar" MaxLength="11" />
+          <Property Name="telefon" Type="varchar" MaxLength="9" />
+        </EntityType>
+        <EntityType Name="recepta">
+          <Key>
+            <PropertyRef Name="id_recepta" />
+          </Key>
+          <Property Name="id_recepta" Type="int" Nullable="false" />
+          <Property Name="id_pacjent" Type="int" />
+          <Property Name="id_lekarz" Type="int" />
+          <Property Name="lek_i_dawkowanie" Type="varchar" MaxLength="200" />
+          <Property Name="data_wystawienia" Type="datetime" />
+        </EntityType>
+        <EntityType Name="skierowanie">
+          <Key>
+            <PropertyRef Name="id_skierowanie" />
+          </Key>
+          <Property Name="id_skierowanie" Type="int" Nullable="false" />
+          <Property Name="id_pacjent" Type="int" />
+          <Property Name="id_badanie" Type="int" />
+          <Property Name="id_lekarz" Type="int" />
+          <Property Name="data_wystawienia" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="wizyta">
+          <Key>
+            <PropertyRef Name="id_wizyta" />
+          </Key>
+          <Property Name="id_wizyta" Type="int" Nullable="false" />
+          <Property Name="id_skierowanie" Type="int" />
+          <Property Name="id_recepta" Type="int" />
+          <Property Name="id_choroba" Type="int" />
+          <Property Name="id_badanie" Type="int" />
+          <Property Name="id_lekarz" Type="int" />
+          <Property Name="id_pacjent" Type="int" />
+          <Property Name="data_wizyty" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_badanie_lekarz">
+          <End Role="lekarz" Type="Self.lekarz" Multiplicity="0..1" />
+          <End Role="badanie" Type="Self.badanie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lekarz">
+              <PropertyRef Name="id_lekarz" />
+            </Principal>
+            <Dependent Role="badanie">
+              <PropertyRef Name="id_lekarz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_badanie_pacjent">
+          <End Role="pacjent" Type="Self.pacjent" Multiplicity="0..1" />
+          <End Role="badanie" Type="Self.badanie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pacjent">
+              <PropertyRef Name="id_pacjent" />
+            </Principal>
+            <Dependent Role="badanie">
+              <PropertyRef Name="id_pacjent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_godziny_przyjec_pracownik">
+          <End Role="lekarz" Type="Self.lekarz" Multiplicity="0..1" />
+          <End Role="godziny_przyjec" Type="Self.godziny_przyjec" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lekarz">
+              <PropertyRef Name="id_lekarz" />
+            </Principal>
+            <Dependent Role="godziny_przyjec">
+              <PropertyRef Name="id_pracownik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pacjent_adres">
+          <End Role="adres" Type="Self.adres" Multiplicity="0..1" />
+          <End Role="pacjent" Type="Self.pacjent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adres">
+              <PropertyRef Name="id_adres" />
+            </Principal>
+            <Dependent Role="pacjent">
+              <PropertyRef Name="id_adres" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pracownik_adres">
+          <End Role="adres" Type="Self.adres" Multiplicity="0..1" />
+          <End Role="lekarz" Type="Self.lekarz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adres">
+              <PropertyRef Name="id_adres" />
+            </Principal>
+            <Dependent Role="lekarz">
+              <PropertyRef Name="id_adres" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_recepta_pacjent">
+          <End Role="pacjent" Type="Self.pacjent" Multiplicity="0..1" />
+          <End Role="recepta" Type="Self.recepta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pacjent">
+              <PropertyRef Name="id_pacjent" />
+            </Principal>
+            <Dependent Role="recepta">
+              <PropertyRef Name="id_pacjent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_recepta_pracownik">
+          <End Role="lekarz" Type="Self.lekarz" Multiplicity="0..1" />
+          <End Role="recepta" Type="Self.recepta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lekarz">
+              <PropertyRef Name="id_lekarz" />
+            </Principal>
+            <Dependent Role="recepta">
+              <PropertyRef Name="id_lekarz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wizyta_badanie">
+          <End Role="badanie" Type="Self.badanie" Multiplicity="0..1" />
+          <End Role="wizyta" Type="Self.wizyta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="badanie">
+              <PropertyRef Name="id_badanie" />
+            </Principal>
+            <Dependent Role="wizyta">
+              <PropertyRef Name="id_badanie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wizyta_choroba">
+          <End Role="choroba" Type="Self.choroba" Multiplicity="0..1" />
+          <End Role="wizyta" Type="Self.wizyta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="choroba">
+              <PropertyRef Name="id_choroba" />
+            </Principal>
+            <Dependent Role="wizyta">
+              <PropertyRef Name="id_choroba" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wizyta_recepta">
+          <End Role="recepta" Type="Self.recepta" Multiplicity="0..1" />
+          <End Role="wizyta" Type="Self.wizyta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="recepta">
+              <PropertyRef Name="id_recepta" />
+            </Principal>
+            <Dependent Role="wizyta">
+              <PropertyRef Name="id_recepta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wizyta_skierowanie">
+          <End Role="skierowanie" Type="Self.skierowanie" Multiplicity="0..1" />
+          <End Role="wizyta" Type="Self.wizyta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="skierowanie">
+              <PropertyRef Name="id_skierowanie" />
+            </Principal>
+            <Dependent Role="wizyta">
+              <PropertyRef Name="id_skierowanie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ePrzychodniaModelStoreContainer">
+          <EntitySet Name="adres" EntityType="Self.adres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="badanie" EntityType="Self.badanie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="choroba" EntityType="Self.choroba" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="godziny_przyjec" EntityType="Self.godziny_przyjec" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lekarz" EntityType="Self.lekarz" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pacjent" EntityType="Self.pacjent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="recepta" EntityType="Self.recepta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="skierowanie" EntityType="Self.skierowanie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="wizyta" EntityType="Self.wizyta" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_badanie_lekarz" Association="Self.FK_badanie_lekarz">
+            <End Role="lekarz" EntitySet="lekarz" />
+            <End Role="badanie" EntitySet="badanie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_badanie_pacjent" Association="Self.FK_badanie_pacjent">
+            <End Role="pacjent" EntitySet="pacjent" />
+            <End Role="badanie" EntitySet="badanie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_godziny_przyjec_pracownik" Association="Self.FK_godziny_przyjec_pracownik">
+            <End Role="lekarz" EntitySet="lekarz" />
+            <End Role="godziny_przyjec" EntitySet="godziny_przyjec" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pacjent_adres" Association="Self.FK_pacjent_adres">
+            <End Role="adres" EntitySet="adres" />
+            <End Role="pacjent" EntitySet="pacjent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pracownik_adres" Association="Self.FK_pracownik_adres">
+            <End Role="adres" EntitySet="adres" />
+            <End Role="lekarz" EntitySet="lekarz" />
+          </AssociationSet>
+          <AssociationSet Name="FK_recepta_pacjent" Association="Self.FK_recepta_pacjent">
+            <End Role="pacjent" EntitySet="pacjent" />
+            <End Role="recepta" EntitySet="recepta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_recepta_pracownik" Association="Self.FK_recepta_pracownik">
+            <End Role="lekarz" EntitySet="lekarz" />
+            <End Role="recepta" EntitySet="recepta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wizyta_badanie" Association="Self.FK_wizyta_badanie">
+            <End Role="badanie" EntitySet="badanie" />
+            <End Role="wizyta" EntitySet="wizyta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wizyta_choroba" Association="Self.FK_wizyta_choroba">
+            <End Role="choroba" EntitySet="choroba" />
+            <End Role="wizyta" EntitySet="wizyta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wizyta_recepta" Association="Self.FK_wizyta_recepta">
+            <End Role="recepta" EntitySet="recepta" />
+            <End Role="wizyta" EntitySet="wizyta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wizyta_skierowanie" Association="Self.FK_wizyta_skierowanie">
+            <End Role="skierowanie" EntitySet="skierowanie" />
+            <End Role="wizyta" EntitySet="wizyta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ePrzychodniaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="adres">
+          <Key>
+            <PropertyRef Name="id_adres" />
+          </Key>
+          <Property Name="id_adres" Type="Int32" Nullable="false" />
+          <Property Name="kraj" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="wojewodztwo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="miasto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kod_pocztowy" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="ulica" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nr_budynku" Type="Int32" />
+          <Property Name="nr_domu" Type="Int32" />
+          <NavigationProperty Name="pacjent" Relationship="Self.FK_pacjent_adres" FromRole="adres" ToRole="pacjent" />
+          <NavigationProperty Name="lekarz" Relationship="Self.FK_pracownik_adres" FromRole="adres" ToRole="lekarz" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="badanie">
+          <Key>
+            <PropertyRef Name="id_badanie" />
+          </Key>
+          <Property Name="id_badanie" Type="Int32" Nullable="false" />
+          <Property Name="id_lekarz" Type="Int32" />
+          <Property Name="id_pacjent" Type="Int32" />
+          <Property Name="opis_badania" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="data_badania" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="lekarz" Relationship="Self.FK_badanie_lekarz" FromRole="badanie" ToRole="lekarz" />
+          <NavigationProperty Name="pacjent" Relationship="Self.FK_badanie_pacjent" FromRole="badanie" ToRole="pacjent" />
+          <NavigationProperty Name="wizyta" Relationship="Self.FK_wizyta_badanie" FromRole="badanie" ToRole="wizyta" />
+        </EntityType>
+        <EntityType Name="choroba">
+          <Key>
+            <PropertyRef Name="id_choroba" />
+          </Key>
+          <Property Name="id_choroba" Type="Int32" Nullable="false" />
+          <Property Name="nazwa_choroby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="objawy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="diagnoza" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="wizyta" Relationship="Self.FK_wizyta_choroba" FromRole="choroba" ToRole="wizyta" />
+        </EntityType>
+        <EntityType Name="godziny_przyjec">
+          <Key>
+            <PropertyRef Name="id_godziny_przyjec" />
+          </Key>
+          <Property Name="id_godziny_przyjec" Type="Int32" Nullable="false" />
+          <Property Name="id_pracownik" Type="Int32" />
+          <Property Name="dzien_tygodnia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="godz_od" Type="DateTime" Precision="3" />
+          <Property Name="godz_do" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="lekarz" Relationship="Self.FK_godziny_przyjec_pracownik" FromRole="godziny_przyjec" ToRole="lekarz" />
+        </EntityType>
+        <EntityType Name="lekarz">
+          <Key>
+            <PropertyRef Name="id_lekarz" />
+          </Key>
+          <Property Name="id_lekarz" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_adres" Type="Int32" />
+          <Property Name="nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pesel" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="telefon" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="adres" Relationship="Self.FK_pracownik_adres" FromRole="lekarz" ToRole="adres" />
+          <NavigationProperty Name="badanie" Relationship="Self.FK_badanie_lekarz" FromRole="lekarz" ToRole="badanie" />
+          <NavigationProperty Name="godziny_przyjec" Relationship="Self.FK_godziny_przyjec_pracownik" FromRole="lekarz" ToRole="godziny_przyjec" />
+          <NavigationProperty Name="recepta" Relationship="Self.FK_recepta_pracownik" FromRole="lekarz" ToRole="recepta" />
+        </EntityType>
+        <EntityType Name="pacjent">
+          <Key>
+            <PropertyRef Name="id_pacjent" />
+          </Key>
+          <Property Name="id_pacjent" Type="Int32" Nullable="false" />
+          <Property Name="id_adres" Type="Int32" />
+          <Property Name="nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="wiek" Type="Int32" />
+          <Property Name="pesel" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="telefon" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="adres" Relationship="Self.FK_pacjent_adres" FromRole="pacjent" ToRole="adres" />
+          <NavigationProperty Name="badanie" Relationship="Self.FK_badanie_pacjent" FromRole="pacjent" ToRole="badanie" />
+          <NavigationProperty Name="recepta" Relationship="Self.FK_recepta_pacjent" FromRole="pacjent" ToRole="recepta" />
+        </EntityType>
+        <EntityType Name="recepta">
+          <Key>
+            <PropertyRef Name="id_recepta" />
+          </Key>
+          <Property Name="id_recepta" Type="Int32" Nullable="false" />
+          <Property Name="id_pacjent" Type="Int32" />
+          <Property Name="id_lekarz" Type="Int32" />
+          <Property Name="lek_i_dawkowanie" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="data_wystawienia" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="lekarz" Relationship="Self.FK_recepta_pracownik" FromRole="recepta" ToRole="lekarz" />
+          <NavigationProperty Name="pacjent" Relationship="Self.FK_recepta_pacjent" FromRole="recepta" ToRole="pacjent" />
+          <NavigationProperty Name="wizyta" Relationship="Self.FK_wizyta_recepta" FromRole="recepta" ToRole="wizyta" />
+        </EntityType>
+        <EntityType Name="skierowanie">
+          <Key>
+            <PropertyRef Name="id_skierowanie" />
+          </Key>
+          <Property Name="id_skierowanie" Type="Int32" Nullable="false" />
+          <Property Name="id_pacjent" Type="Int32" />
+          <Property Name="id_badanie" Type="Int32" />
+          <Property Name="id_lekarz" Type="Int32" />
+          <Property Name="data_wystawienia" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="wizyta" Relationship="Self.FK_wizyta_skierowanie" FromRole="skierowanie" ToRole="wizyta" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="wizyta">
+          <Key>
+            <PropertyRef Name="id_wizyta" />
+          </Key>
+          <Property Name="id_wizyta" Type="Int32" Nullable="false" />
+          <Property Name="id_skierowanie" Type="Int32" />
+          <Property Name="id_recepta" Type="Int32" />
+          <Property Name="id_choroba" Type="Int32" />
+          <Property Name="id_badanie" Type="Int32" />
+          <Property Name="id_lekarz" Type="Int32" />
+          <Property Name="id_pacjent" Type="Int32" />
+          <Property Name="data_wizyty" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="badanie" Relationship="Self.FK_wizyta_badanie" FromRole="wizyta" ToRole="badanie" />
+          <NavigationProperty Name="choroba" Relationship="Self.FK_wizyta_choroba" FromRole="wizyta" ToRole="choroba" />
+          <NavigationProperty Name="recepta" Relationship="Self.FK_wizyta_recepta" FromRole="wizyta" ToRole="recepta" />
+          <NavigationProperty Name="skierowanie" Relationship="Self.FK_wizyta_skierowanie" FromRole="wizyta" ToRole="skierowanie" />
+        </EntityType>
+        <Association Name="FK_pacjent_adres">
+          <End Role="adres" Type="Self.adres" Multiplicity="0..1" />
+          <End Role="pacjent" Type="Self.pacjent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adres">
+              <PropertyRef Name="id_adres" />
+            </Principal>
+            <Dependent Role="pacjent">
+              <PropertyRef Name="id_adres" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pracownik_adres">
+          <End Role="adres" Type="Self.adres" Multiplicity="0..1" />
+          <End Role="lekarz" Type="Self.lekarz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adres">
+              <PropertyRef Name="id_adres" />
+            </Principal>
+            <Dependent Role="lekarz">
+              <PropertyRef Name="id_adres" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_badanie_lekarz">
+          <End Role="lekarz" Type="Self.lekarz" Multiplicity="0..1" />
+          <End Role="badanie" Type="Self.badanie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lekarz">
+              <PropertyRef Name="id_lekarz" />
+            </Principal>
+            <Dependent Role="badanie">
+              <PropertyRef Name="id_lekarz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_badanie_pacjent">
+          <End Role="pacjent" Type="Self.pacjent" Multiplicity="0..1" />
+          <End Role="badanie" Type="Self.badanie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pacjent">
+              <PropertyRef Name="id_pacjent" />
+            </Principal>
+            <Dependent Role="badanie">
+              <PropertyRef Name="id_pacjent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wizyta_badanie">
+          <End Role="badanie" Type="Self.badanie" Multiplicity="0..1" />
+          <End Role="wizyta" Type="Self.wizyta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="badanie">
+              <PropertyRef Name="id_badanie" />
+            </Principal>
+            <Dependent Role="wizyta">
+              <PropertyRef Name="id_badanie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wizyta_choroba">
+          <End Role="choroba" Type="Self.choroba" Multiplicity="0..1" />
+          <End Role="wizyta" Type="Self.wizyta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="choroba">
+              <PropertyRef Name="id_choroba" />
+            </Principal>
+            <Dependent Role="wizyta">
+              <PropertyRef Name="id_choroba" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_godziny_przyjec_pracownik">
+          <End Role="lekarz" Type="Self.lekarz" Multiplicity="0..1" />
+          <End Role="godziny_przyjec" Type="Self.godziny_przyjec" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lekarz">
+              <PropertyRef Name="id_lekarz" />
+            </Principal>
+            <Dependent Role="godziny_przyjec">
+              <PropertyRef Name="id_pracownik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_recepta_pracownik">
+          <End Role="lekarz" Type="Self.lekarz" Multiplicity="0..1" />
+          <End Role="recepta" Type="Self.recepta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lekarz">
+              <PropertyRef Name="id_lekarz" />
+            </Principal>
+            <Dependent Role="recepta">
+              <PropertyRef Name="id_lekarz" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_recepta_pacjent">
+          <End Role="pacjent" Type="Self.pacjent" Multiplicity="0..1" />
+          <End Role="recepta" Type="Self.recepta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pacjent">
+              <PropertyRef Name="id_pacjent" />
+            </Principal>
+            <Dependent Role="recepta">
+              <PropertyRef Name="id_pacjent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wizyta_recepta">
+          <End Role="recepta" Type="Self.recepta" Multiplicity="0..1" />
+          <End Role="wizyta" Type="Self.wizyta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="recepta">
+              <PropertyRef Name="id_recepta" />
+            </Principal>
+            <Dependent Role="wizyta">
+              <PropertyRef Name="id_recepta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_wizyta_skierowanie">
+          <End Role="skierowanie" Type="Self.skierowanie" Multiplicity="0..1" />
+          <End Role="wizyta" Type="Self.wizyta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="skierowanie">
+              <PropertyRef Name="id_skierowanie" />
+            </Principal>
+            <Dependent Role="wizyta">
+              <PropertyRef Name="id_skierowanie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="adres" EntityType="Self.adres" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="badanie" EntityType="Self.badanie" />
+          <EntitySet Name="choroba" EntityType="Self.choroba" />
+          <EntitySet Name="godziny_przyjec" EntityType="Self.godziny_przyjec" />
+          <EntitySet Name="lekarz" EntityType="Self.lekarz" />
+          <EntitySet Name="pacjent" EntityType="Self.pacjent" />
+          <EntitySet Name="recepta" EntityType="Self.recepta" />
+          <EntitySet Name="skierowanie" EntityType="Self.skierowanie" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="wizyta" EntityType="Self.wizyta" />
+          <AssociationSet Name="FK_pacjent_adres" Association="Self.FK_pacjent_adres">
+            <End Role="adres" EntitySet="adres" />
+            <End Role="pacjent" EntitySet="pacjent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pracownik_adres" Association="Self.FK_pracownik_adres">
+            <End Role="adres" EntitySet="adres" />
+            <End Role="lekarz" EntitySet="lekarz" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_badanie_lekarz" Association="Self.FK_badanie_lekarz">
+            <End Role="lekarz" EntitySet="lekarz" />
+            <End Role="badanie" EntitySet="badanie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_badanie_pacjent" Association="Self.FK_badanie_pacjent">
+            <End Role="pacjent" EntitySet="pacjent" />
+            <End Role="badanie" EntitySet="badanie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wizyta_badanie" Association="Self.FK_wizyta_badanie">
+            <End Role="badanie" EntitySet="badanie" />
+            <End Role="wizyta" EntitySet="wizyta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wizyta_choroba" Association="Self.FK_wizyta_choroba">
+            <End Role="choroba" EntitySet="choroba" />
+            <End Role="wizyta" EntitySet="wizyta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_godziny_przyjec_pracownik" Association="Self.FK_godziny_przyjec_pracownik">
+            <End Role="lekarz" EntitySet="lekarz" />
+            <End Role="godziny_przyjec" EntitySet="godziny_przyjec" />
+          </AssociationSet>
+          <AssociationSet Name="FK_recepta_pracownik" Association="Self.FK_recepta_pracownik">
+            <End Role="lekarz" EntitySet="lekarz" />
+            <End Role="recepta" EntitySet="recepta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_recepta_pacjent" Association="Self.FK_recepta_pacjent">
+            <End Role="pacjent" EntitySet="pacjent" />
+            <End Role="recepta" EntitySet="recepta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wizyta_recepta" Association="Self.FK_wizyta_recepta">
+            <End Role="recepta" EntitySet="recepta" />
+            <End Role="wizyta" EntitySet="wizyta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_wizyta_skierowanie" Association="Self.FK_wizyta_skierowanie">
+            <End Role="skierowanie" EntitySet="skierowanie" />
+            <End Role="wizyta" EntitySet="wizyta" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ePrzychodniaModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="adres">
+            <EntityTypeMapping TypeName="ePrzychodniaModel.adres">
+              <MappingFragment StoreEntitySet="adres">
+                <ScalarProperty Name="id_adres" ColumnName="id_adres" />
+                <ScalarProperty Name="kraj" ColumnName="kraj" />
+                <ScalarProperty Name="wojewodztwo" ColumnName="wojewodztwo" />
+                <ScalarProperty Name="miasto" ColumnName="miasto" />
+                <ScalarProperty Name="kod_pocztowy" ColumnName="kod_pocztowy" />
+                <ScalarProperty Name="ulica" ColumnName="ulica" />
+                <ScalarProperty Name="nr_budynku" ColumnName="nr_budynku" />
+                <ScalarProperty Name="nr_domu" ColumnName="nr_domu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="ePrzychodniaModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="ePrzychodniaModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="ePrzychodniaModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="ePrzychodniaModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="badanie">
+            <EntityTypeMapping TypeName="ePrzychodniaModel.badanie">
+              <MappingFragment StoreEntitySet="badanie">
+                <ScalarProperty Name="id_badanie" ColumnName="id_badanie" />
+                <ScalarProperty Name="id_lekarz" ColumnName="id_lekarz" />
+                <ScalarProperty Name="id_pacjent" ColumnName="id_pacjent" />
+                <ScalarProperty Name="opis_badania" ColumnName="opis_badania" />
+                <ScalarProperty Name="data_badania" ColumnName="data_badania" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="choroba">
+            <EntityTypeMapping TypeName="ePrzychodniaModel.choroba">
+              <MappingFragment StoreEntitySet="choroba">
+                <ScalarProperty Name="id_choroba" ColumnName="id_choroba" />
+                <ScalarProperty Name="nazwa_choroby" ColumnName="nazwa_choroby" />
+                <ScalarProperty Name="objawy" ColumnName="objawy" />
+                <ScalarProperty Name="diagnoza" ColumnName="diagnoza" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="godziny_przyjec">
+            <EntityTypeMapping TypeName="ePrzychodniaModel.godziny_przyjec">
+              <MappingFragment StoreEntitySet="godziny_przyjec">
+                <ScalarProperty Name="id_godziny_przyjec" ColumnName="id_godziny_przyjec" />
+                <ScalarProperty Name="id_pracownik" ColumnName="id_pracownik" />
+                <ScalarProperty Name="dzien_tygodnia" ColumnName="dzien_tygodnia" />
+                <ScalarProperty Name="godz_od" ColumnName="godz_od" />
+                <ScalarProperty Name="godz_do" ColumnName="godz_do" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lekarz">
+            <EntityTypeMapping TypeName="ePrzychodniaModel.lekarz">
+              <MappingFragment StoreEntitySet="lekarz">
+                <ScalarProperty Name="id_lekarz" ColumnName="id_lekarz" />
+                <ScalarProperty Name="id_adres" ColumnName="id_adres" />
+                <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />
+                <ScalarProperty Name="imie" ColumnName="imie" />
+                <ScalarProperty Name="pesel" ColumnName="pesel" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pacjent">
+            <EntityTypeMapping TypeName="ePrzychodniaModel.pacjent">
+              <MappingFragment StoreEntitySet="pacjent">
+                <ScalarProperty Name="id_pacjent" ColumnName="id_pacjent" />
+                <ScalarProperty Name="id_adres" ColumnName="id_adres" />
+                <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />
+                <ScalarProperty Name="imie" ColumnName="imie" />
+                <ScalarProperty Name="wiek" ColumnName="wiek" />
+                <ScalarProperty Name="pesel" ColumnName="pesel" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="recepta">
+            <EntityTypeMapping TypeName="ePrzychodniaModel.recepta">
+              <MappingFragment StoreEntitySet="recepta">
+                <ScalarProperty Name="id_recepta" ColumnName="id_recepta" />
+                <ScalarProperty Name="id_pacjent" ColumnName="id_pacjent" />
+                <ScalarProperty Name="id_lekarz" ColumnName="id_lekarz" />
+                <ScalarProperty Name="lek_i_dawkowanie" ColumnName="lek_i_dawkowanie" />
+                <ScalarProperty Name="data_wystawienia" ColumnName="data_wystawienia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="skierowanie">
+            <EntityTypeMapping TypeName="ePrzychodniaModel.skierowanie">
+              <MappingFragment StoreEntitySet="skierowanie">
+                <ScalarProperty Name="id_skierowanie" ColumnName="id_skierowanie" />
+                <ScalarProperty Name="id_pacjent" ColumnName="id_pacjent" />
+                <ScalarProperty Name="id_badanie" ColumnName="id_badanie" />
+                <ScalarProperty Name="id_lekarz" ColumnName="id_lekarz" />
+                <ScalarProperty Name="data_wystawienia" ColumnName="data_wystawienia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ePrzychodniaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wizyta">
+            <EntityTypeMapping TypeName="ePrzychodniaModel.wizyta">
+              <MappingFragment StoreEntitySet="wizyta">
+                <ScalarProperty Name="id_wizyta" ColumnName="id_wizyta" />
+                <ScalarProperty Name="id_skierowanie" ColumnName="id_skierowanie" />
+                <ScalarProperty Name="id_recepta" ColumnName="id_recepta" />
+                <ScalarProperty Name="id_choroba" ColumnName="id_choroba" />
+                <ScalarProperty Name="id_badanie" ColumnName="id_badanie" />
+                <ScalarProperty Name="id_lekarz" ColumnName="id_lekarz" />
+                <ScalarProperty Name="id_pacjent" ColumnName="id_pacjent" />
+                <ScalarProperty Name="data_wizyty" ColumnName="data_wizyty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="ePrzychodniaModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
