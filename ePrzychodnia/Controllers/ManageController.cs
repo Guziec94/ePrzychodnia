@@ -256,8 +256,12 @@ namespace ePrzychodnia.Controllers
 
             base.Dispose(disposing);
         }
+        public ActionResult Dane()
+        {
+            return View();
+        }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 

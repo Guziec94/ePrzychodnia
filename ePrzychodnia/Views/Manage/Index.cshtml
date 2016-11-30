@@ -15,11 +15,24 @@
             [
             @if (Model.HasPassword)
             {
-                @Html.ActionLink("Zmień obecne hasło", "ChangePassword")
+            @Html.ActionLink("Zmień obecne hasło", "ChangePassword")
             }
             else
             {
-                @Html.ActionLink("Create", "SetPassword")
+            @Html.ActionLink("Create", "SetPassword")
+            }
+            ]
+        </dd>
+        <dt>Uzupełnij swoje dane:</dt>
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+            @Html.ActionLink("Dane ", "Dane")
+            }
+            else
+            {
+            @Html.ActionLink("Create", "SetPassword")
             }
             ]
         </dd>
