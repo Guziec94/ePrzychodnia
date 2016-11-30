@@ -57,10 +57,4 @@ namespace ePrzychodnia.Models
         [Compare("NewPassword", ErrorMessage = "Hasła nie pasują do siebie.")]
         public string ConfirmPassword { get; set; }
     }
-
-    public class ConfigureTwoFactorViewModel
-    {
-        public string SelectedProvider { get; set; }
-        public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
-    }
 }
