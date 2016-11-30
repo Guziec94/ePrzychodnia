@@ -12,18 +12,17 @@ namespace ePrzychodnia
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            //createRolesandUsers();
+            createRolesandUsers();
         }
 
-        // In this method we will create default User roles and Admin user for login   
+        // this method will create default User roles and Admin user for login   
         private void createRolesandUsers()
         {
             ApplicationDbContext context = new ApplicationDbContext();
-
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
-            // In Startup iam creating first Admin Role and creating a default Admin User    
+            // creating Admin Role and creating a default Admin User    
             if (!roleManager.RoleExists("Admin"))
             {
 
@@ -46,26 +45,21 @@ namespace ePrzychodnia
                 if (chkUser.Succeeded)
                 {
                     var result1 = UserManager.AddToRole(user.Id, "Admin");
-
                 }
             }
-
-            // creating Creating Manager role    
+            //utworzenie roli dla Lekarza
             if (!roleManager.RoleExists("Lekarz"))
             {
                 var role = new IdentityRole();
                 role.Name = "Lekarz";
                 roleManager.Create(role);
-
             }
-
-            // creating Creating Employee role    
+            //utworzenie roli dla Pacjenta
             if (!roleManager.RoleExists("Pacjent"))
             {
                 var role = new IdentityRole();
                 role.Name = "Pacjent";
                 roleManager.Create(role);
-
             }
         }
     }

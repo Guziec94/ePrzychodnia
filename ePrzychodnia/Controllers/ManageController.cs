@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ePrzychodnia.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ePrzychodnia.Controllers
 {
@@ -66,6 +67,7 @@ namespace ePrzychodnia.Controllers
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {
+                getUserRole = getUserRole(),
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
@@ -291,14 +293,26 @@ namespace ePrzychodnia.Controllers
             return false;
         }
 
-        private bool HasPhoneNumber()
+        private string getUserRole()
         {
-            var user = UserManager.FindById(User.Identity.GetUserId());
-            if (user != null)
+            try
             {
-                return user.PhoneNumber != null;
+                ApplicationDbContext context = new ApplicationDbContext();
+                var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context)).Roles;
+                var userRoleID = UserManager.FindById(User.Identity.GetUserId()).Roles.Single().RoleId;
+                foreach (var role in roleManager.ToArray())
+                {
+                    if (role.Id == userRoleID)
+                    {
+                        return role.Name;
+                    }
+                }
+                return "Inna Rola";
             }
-            return false;
+            catch
+            {
+                return "Inna Rola";
+            }
         }
 
         public enum ManageMessageId

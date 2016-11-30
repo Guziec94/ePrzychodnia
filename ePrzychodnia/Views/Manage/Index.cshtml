@@ -23,18 +23,15 @@
             }
             ]
         </dd>
-        <dt>Uzupełnij swoje dane:</dt>
-        <dd>
+           
+        @if (Model.getUserRole == "Pacjent")
+        {
+            <dt>Uzupełnij swoje dane:</dt>
+            <dd> 
             [
-            @if (Model.HasPassword)
-            {
-            @Html.ActionLink("Dane ", "Dane")
-            }
-            else
-            {
-            @Html.ActionLink("Create", "SetPassword")
-            }
+            @Html.ActionLink("Uzupełnij dane", "PacjentForm")
             ]
-        </dd>
+            </dd>
+        }
     </dl>
 </div>
