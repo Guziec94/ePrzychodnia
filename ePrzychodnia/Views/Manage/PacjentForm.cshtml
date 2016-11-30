@@ -1,0 +1,64 @@
+﻿@model ePrzychodnia.Models.IndexViewModel
+@{
+    ViewBag.Title = "Dane Osobowe i Adresowe";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<form action=" " method="post">
+
+    <h3>Dane osobowe:</h3>
+    <br /><br />
+
+    <label for="Nazwisko"> Nazwisko: </label>
+    <input type="text" name="Nazwisko" id="Nazwisko" />
+    <br />
+
+    <label for="Imie"> Imię: </label>
+    <input type="text" name="Imie" id="Imie" />
+    <br />
+
+    <label for="wiek">  Wiek: </label>
+    <input type="text" name="Wiek" id="Wiek" />
+    <br />
+
+    <label for="Pesel"> Pesel: </label>
+    <input type="text" name="Pesel" id="PEsel" />
+    <br />
+
+    <label for="Telefon"> Telefon: </label>
+    <input type="text" name="Telefon" id="Telefon" />
+    <br />
+    <br />
+    <h3>Dane teleadresowe:</h3>
+    <br /><br />
+    <label for="Kraj"> Kraj: </label>
+    <input type="text" name="Kraj" id="Kraj" />
+    <br />
+
+    <label for="Wojewodztwo"> Województwo: </label>
+    <input type="text" name="wojewodztwo" id="wojewodztwo" />
+    <br />
+
+    <label for="Miasto"> Miasto: </label>
+    <input type="text" name="Miasto" id="Miasto" />
+    <br />
+
+    <label for="Kod"> Kod pocztowy: </label>
+    <input type="text" name="Kod" id="Kod" />
+    <br />
+
+    <label for="Ulica"> Ulica: </label>
+    <input type="text" name="Ulica" id="Ulica" />
+    <br />
+
+    <label for="nr_budynku"> Numer budynku: </label>
+    <input type="text" name="nr_budyku" id="nr_budynku" />
+    <br />
+
+    <label for="nr_domu"> Numer_domu: </label>
+    <input type="text" name="nr_domu" id="nr_domu" />
+    <br />
+
+    <input type="submit" value="prześlij" />
+</form>

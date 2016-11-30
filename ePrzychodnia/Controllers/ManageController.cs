@@ -256,7 +256,7 @@ namespace ePrzychodnia.Controllers
 
             base.Dispose(disposing);
         }
-        public ActionResult Dane()
+        public ActionResult PacjentForm()
         {
             return View();
         }
