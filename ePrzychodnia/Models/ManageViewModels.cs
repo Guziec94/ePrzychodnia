@@ -58,26 +58,6 @@ namespace ePrzychodnia.Models
         public string ConfirmPassword { get; set; }
     }
 
-    public class AddPhoneNumberViewModel
-    {
-        [Required]
-        [Phone]
-        [Display(Name = "Numer telefonu")]
-        public string Number { get; set; }
-    }
-
-    public class VerifyPhoneNumberViewModel
-    {
-        [Required]
-        [Display(Name = "Code")]
-        public string Code { get; set; }
-
-        [Required]
-        [Phone]
-        [Display(Name = "Numer telefonu")]
-        public string PhoneNumber { get; set; }
-    }
-
     public class ConfigureTwoFactorViewModel
     {
         public string SelectedProvider { get; set; }
