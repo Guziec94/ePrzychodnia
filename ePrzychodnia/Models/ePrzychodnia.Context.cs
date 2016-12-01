@@ -13,16 +13,16 @@ namespace ePrzychodnia.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities : DbContext
+    public partial class ePrzychodniaEntities : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public ePrzychodniaEntities()
+            : base("name=ePrzychodniaEntities")
         {
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+    		modelBuilder.Conventions.Remove<System.Data.Entity.ModelConfiguration.Conventions.PluralizingTableNameConvention>();
         }
     
         public virtual DbSet<adres> adres { get; set; }

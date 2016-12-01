@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="id_adres" />
           </Key>
-          <Property Name="id_adres" Type="int" Nullable="false" />
+          <Property Name="id_adres" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="kraj" Type="varchar" MaxLength="50" />
           <Property Name="wojewodztwo" Type="varchar" MaxLength="50" />
           <Property Name="miasto" Type="varchar" MaxLength="50" />
@@ -73,7 +73,7 @@
           <Key>
             <PropertyRef Name="id_badanie" />
           </Key>
-          <Property Name="id_badanie" Type="int" Nullable="false" />
+          <Property Name="id_badanie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_lekarz" Type="int" />
           <Property Name="id_pacjent" Type="int" />
           <Property Name="opis_badania" Type="varchar" MaxLength="250" />
@@ -83,7 +83,7 @@
           <Key>
             <PropertyRef Name="id_choroba" />
           </Key>
-          <Property Name="id_choroba" Type="int" Nullable="false" />
+          <Property Name="id_choroba" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nazwa_choroby" Type="varchar" MaxLength="50" />
           <Property Name="objawy" Type="varchar" MaxLength="100" />
           <Property Name="diagnoza" Type="varchar" MaxLength="250" />
@@ -92,7 +92,7 @@
           <Key>
             <PropertyRef Name="id_godziny_przyjec" />
           </Key>
-          <Property Name="id_godziny_przyjec" Type="int" Nullable="false" />
+          <Property Name="id_godziny_przyjec" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_pracownik" Type="int" />
           <Property Name="dzien_tygodnia" Type="varchar" MaxLength="50" />
           <Property Name="godz_od" Type="datetime" />
@@ -113,7 +113,7 @@
           <Key>
             <PropertyRef Name="id_pacjent" />
           </Key>
-          <Property Name="id_pacjent" Type="int" Nullable="false" />
+          <Property Name="id_pacjent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_adres" Type="int" />
           <Property Name="nazwisko" Type="varchar" MaxLength="50" />
           <Property Name="imie" Type="varchar" MaxLength="50" />
@@ -125,7 +125,7 @@
           <Key>
             <PropertyRef Name="id_recepta" />
           </Key>
-          <Property Name="id_recepta" Type="int" Nullable="false" />
+          <Property Name="id_recepta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_pacjent" Type="int" />
           <Property Name="id_lekarz" Type="int" />
           <Property Name="lek_i_dawkowanie" Type="varchar" MaxLength="200" />
@@ -135,7 +135,7 @@
           <Key>
             <PropertyRef Name="id_skierowanie" />
           </Key>
-          <Property Name="id_skierowanie" Type="int" Nullable="false" />
+          <Property Name="id_skierowanie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_pacjent" Type="int" />
           <Property Name="id_badanie" Type="int" />
           <Property Name="id_lekarz" Type="int" />
@@ -155,7 +155,7 @@
           <Key>
             <PropertyRef Name="id_wizyta" />
           </Key>
-          <Property Name="id_wizyta" Type="int" Nullable="false" />
+          <Property Name="id_wizyta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_skierowanie" Type="int" />
           <Property Name="id_recepta" Type="int" />
           <Property Name="id_choroba" Type="int" />
@@ -438,7 +438,7 @@
           <Key>
             <PropertyRef Name="id_adres" />
           </Key>
-          <Property Name="id_adres" Type="Int32" Nullable="false" />
+          <Property Name="id_adres" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="kraj" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="wojewodztwo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="miasto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -502,7 +502,7 @@
           <Key>
             <PropertyRef Name="id_badanie" />
           </Key>
-          <Property Name="id_badanie" Type="Int32" Nullable="false" />
+          <Property Name="id_badanie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_lekarz" Type="Int32" />
           <Property Name="id_pacjent" Type="Int32" />
           <Property Name="opis_badania" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
@@ -515,7 +515,7 @@
           <Key>
             <PropertyRef Name="id_choroba" />
           </Key>
-          <Property Name="id_choroba" Type="Int32" Nullable="false" />
+          <Property Name="id_choroba" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nazwa_choroby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="objawy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="diagnoza" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
@@ -525,7 +525,7 @@
           <Key>
             <PropertyRef Name="id_godziny_przyjec" />
           </Key>
-          <Property Name="id_godziny_przyjec" Type="Int32" Nullable="false" />
+          <Property Name="id_godziny_przyjec" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_pracownik" Type="Int32" />
           <Property Name="dzien_tygodnia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="godz_od" Type="DateTime" Precision="3" />
@@ -551,7 +551,7 @@
           <Key>
             <PropertyRef Name="id_pacjent" />
           </Key>
-          <Property Name="id_pacjent" Type="Int32" Nullable="false" />
+          <Property Name="id_pacjent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_adres" Type="Int32" />
           <Property Name="nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -566,7 +566,7 @@
           <Key>
             <PropertyRef Name="id_recepta" />
           </Key>
-          <Property Name="id_recepta" Type="Int32" Nullable="false" />
+          <Property Name="id_recepta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_pacjent" Type="Int32" />
           <Property Name="id_lekarz" Type="Int32" />
           <Property Name="lek_i_dawkowanie" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
@@ -579,7 +579,7 @@
           <Key>
             <PropertyRef Name="id_skierowanie" />
           </Key>
-          <Property Name="id_skierowanie" Type="Int32" Nullable="false" />
+          <Property Name="id_skierowanie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_pacjent" Type="Int32" />
           <Property Name="id_badanie" Type="Int32" />
           <Property Name="id_lekarz" Type="Int32" />
@@ -600,7 +600,7 @@
           <Key>
             <PropertyRef Name="id_wizyta" />
           </Key>
-          <Property Name="id_wizyta" Type="Int32" Nullable="false" />
+          <Property Name="id_wizyta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_skierowanie" Type="Int32" />
           <Property Name="id_recepta" Type="Int32" />
           <Property Name="id_choroba" Type="Int32" />
@@ -777,7 +777,7 @@
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ePrzychodniaEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="adres" EntityType="Self.adres" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
@@ -854,7 +854,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ePrzychodniaModelStoreContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="ePrzychodniaModelStoreContainer" CdmEntityContainer="ePrzychodniaEntities">
           <EntitySetMapping Name="adres">
             <EntityTypeMapping TypeName="ePrzychodniaModel.adres">
               <MappingFragment StoreEntitySet="adres">

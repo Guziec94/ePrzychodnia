@@ -172,69 +172,70 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\lekarzController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\adres.cs">
-      <DependentUpon>ePrzychodniaModel.tt</DependentUpon>
+      <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetRoles.cs">
-      <DependentUpon>ePrzychodniaModel.tt</DependentUpon>
+      <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserClaims.cs">
-      <DependentUpon>ePrzychodniaModel.tt</DependentUpon>
+      <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserLogins.cs">
-      <DependentUpon>ePrzychodniaModel.tt</DependentUpon>
+      <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUsers.cs">
-      <DependentUpon>ePrzychodniaModel.tt</DependentUpon>
+      <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\badanie.cs">
-      <DependentUpon>ePrzychodniaModel.tt</DependentUpon>
+      <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\choroba.cs">
-      <DependentUpon>ePrzychodniaModel.tt</DependentUpon>
+      <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ePrzychodniaModel.Context.cs">
+    <Compile Include="Models\ePrzychodnia.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ePrzychodniaModel.Context.tt</DependentUpon>
+      <DependentUpon>ePrzychodnia.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ePrzychodniaModel.cs">
+    <Compile Include="Models\ePrzychodnia.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ePrzychodniaModel.tt</DependentUpon>
+      <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ePrzychodniaModel.Designer.cs">
+    <Compile Include="Models\ePrzychodnia.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ePrzychodniaModel.edmx</DependentUpon>
+      <DependentUpon>ePrzychodnia.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\godziny_przyjec.cs">
-      <DependentUpon>ePrzychodniaModel.tt</DependentUpon>
+      <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\lekarz.cs">
-      <DependentUpon>ePrzychodniaModel.tt</DependentUpon>
+      <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\pacjent.cs">
-      <DependentUpon>ePrzychodniaModel.tt</DependentUpon>
+      <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\recepta.cs">
-      <DependentUpon>ePrzychodniaModel.tt</DependentUpon>
+      <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\skierowanie.cs">
-      <DependentUpon>ePrzychodniaModel.tt</DependentUpon>
+      <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>ePrzychodniaModel.tt</DependentUpon>
+      <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\wizyta.cs">
-      <DependentUpon>ePrzychodniaModel.tt</DependentUpon>
+      <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -249,23 +250,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\ePrzychodniaModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ePrzychodniaModel.edmx</DependentUpon>
-      <LastGenOutput>ePrzychodniaModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\ePrzychodniaModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ePrzychodniaModel.edmx</DependentUpon>
-      <LastGenOutput>ePrzychodniaModel.cs</LastGenOutput>
-    </Content>
-    <EntityDeploy Include="Models\ePrzychodniaModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ePrzychodniaModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ePrzychodniaModel.edmx.diagram">
-      <DependentUpon>ePrzychodniaModel.edmx</DependentUpon>
-    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -274,7 +258,24 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <EntityDeploy Include="Models\ePrzychodnia.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ePrzychodnia.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ePrzychodnia.edmx.diagram">
+      <DependentUpon>ePrzychodnia.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Models\ePrzychodnia.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ePrzychodnia.edmx</DependentUpon>
+      <LastGenOutput>ePrzychodnia.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ePrzychodnia.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ePrzychodnia.edmx</DependentUpon>
+      <LastGenOutput>ePrzychodnia.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
@@ -320,6 +321,11 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Manage\PacjentForm.cshtml" />
+    <Content Include="Views\lekarz\Create.cshtml" />
+    <Content Include="Views\lekarz\Delete.cshtml" />
+    <Content Include="Views\lekarz\Details.cshtml" />
+    <Content Include="Views\lekarz\Edit.cshtml" />
+    <Content Include="Views\lekarz\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

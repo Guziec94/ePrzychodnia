@@ -33,5 +33,14 @@
             ]
             </dd>
         }
+        @if (Model.getUserRole == "Admin")
+        {
+            <dt>Uzupełnij swoje dane:</dt>
+            <dd>
+                [
+                @Html.ActionLink("Zarządzaj lekarzami oraz ich danymi", "Index", "lekarz")
+                ]
+            </dd>
+        }
     </dl>
 </div>

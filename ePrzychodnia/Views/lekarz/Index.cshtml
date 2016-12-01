@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ePrzychodnia.Models.lekarz>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Zarządzanie lekarzami oraz ich danymi</h2>
+
+<p>
+    @Html.ActionLink("Dodaj nowego lekarza", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nazwisko)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.imie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pesel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adres.kraj)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nazwisko)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.imie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pesel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adres.kraj)
+        </td>
+        <td>
+            @Html.ActionLink("Edytuj", "Edit", new { id=item.id_lekarz }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.id_lekarz }) |
+            @Html.ActionLink("Usuń", "Delete", new { id=item.id_lekarz })
+        </td>
+    </tr>
+}
+
+</table>
