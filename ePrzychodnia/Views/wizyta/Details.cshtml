@@ -1,0 +1,74 @@
+﻿@model ePrzychodnia.Models.wizyta
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>wizyta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_lekarz)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_lekarz)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_pacjent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_pacjent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_wizyty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_wizyty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.badanie.opis_badania)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.badanie.opis_badania)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.choroba.nazwa_choroby)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.choroba.nazwa_choroby)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.recepta.lek_i_dawkowanie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.recepta.lek_i_dawkowanie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.skierowanie.id_skierowanie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.skierowanie.id_skierowanie)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_wizyta }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

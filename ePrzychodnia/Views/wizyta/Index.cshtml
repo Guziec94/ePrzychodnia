@@ -1,0 +1,69 @@
+﻿@model IEnumerable<ePrzychodnia.Models.wizyta>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id_lekarz)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.id_pacjent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.data_wizyty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.badanie.opis_badania)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.choroba.nazwa_choroby)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.recepta.lek_i_dawkowanie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.skierowanie.id_skierowanie)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_lekarz)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_pacjent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.data_wizyty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.badanie.opis_badania)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.choroba.nazwa_choroby)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.recepta.lek_i_dawkowanie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.skierowanie.id_skierowanie)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_wizyta }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_wizyta }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_wizyta })
+        </td>
+    </tr>
+}
+
+</table>

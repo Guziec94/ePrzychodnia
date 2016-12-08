@@ -10,107 +10,107 @@ using ePrzychodnia.Models;
 
 namespace ePrzychodnia.Controllers
 {
-    public class lekarzController : Controller
+    public class skierowanieController : Controller
     {
         private ePrzychodniaEntities db = new ePrzychodniaEntities();
 
-        // GET: lekarz
+        // GET: skierowanie
         public ActionResult Index()
         {
-            var lekarz = db.lekarz;
-            return View(lekarz.ToList());
+            return View(db.skierowanie.ToList());
         }
 
-        // GET: lekarz/Details/5
+        // GET: skierowanie/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            lekarz lekarz = db.lekarz.Find(id);
-            if (lekarz == null)
+            skierowanie skierowanie = db.skierowanie.Find(id);
+            if (skierowanie == null)
             {
                 return HttpNotFound();
             }
-            return View(lekarz);
+            return View(skierowanie);
         }
 
-        // GET: lekarz/Create
+        // GET: skierowanie/Create
         public ActionResult Create()
-        {   return View();
+        {
+            return View();
         }
 
-        // POST: lekarz/Create
+        // POST: skierowanie/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_lekarz,nazwisko,imie,pesel,telefon")] lekarz lekarz)
+        public ActionResult Create([Bind(Include = "id_skierowanie,id_pacjent,id_badanie,id_lekarz,data_wystawienia")] skierowanie skierowanie)
         {
             if (ModelState.IsValid)
             {
-                db.lekarz.Add(lekarz);
+                db.skierowanie.Add(skierowanie);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(lekarz);
+            return View(skierowanie);
         }
 
-        // GET: lekarz/Edit/5
+        // GET: skierowanie/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            lekarz lekarz = db.lekarz.Find(id);
-            if (lekarz == null)
+            skierowanie skierowanie = db.skierowanie.Find(id);
+            if (skierowanie == null)
             {
                 return HttpNotFound();
             }
-            return View(lekarz);
+            return View(skierowanie);
         }
 
-        // POST: lekarz/Edit/5
+        // POST: skierowanie/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_lekarz,nazwisko,imie,pesel,telefon")] lekarz lekarz)
+        public ActionResult Edit([Bind(Include = "id_skierowanie,id_pacjent,id_badanie,id_lekarz,data_wystawienia")] skierowanie skierowanie)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(lekarz).State = EntityState.Modified;
+                db.Entry(skierowanie).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(lekarz);
+            return View(skierowanie);
         }
 
-        // GET: lekarz/Delete/5
+        // GET: skierowanie/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            lekarz lekarz = db.lekarz.Find(id);
-            if (lekarz == null)
+            skierowanie skierowanie = db.skierowanie.Find(id);
+            if (skierowanie == null)
             {
                 return HttpNotFound();
             }
-            return View(lekarz);
+            return View(skierowanie);
         }
 
-        // POST: lekarz/Delete/5
+        // POST: skierowanie/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            lekarz lekarz = db.lekarz.Find(id);
-            db.lekarz.Remove(lekarz);
+            skierowanie skierowanie = db.skierowanie.Find(id);
+            db.skierowanie.Remove(skierowanie);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

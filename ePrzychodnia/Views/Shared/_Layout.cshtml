@@ -21,9 +21,29 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+
+                    @if (User.IsInRole("Pacjent"))
+                    {
+                        <li>@Html.ActionLink("Choroby", "index", "choroba")</li>
+                        <li>@Html.ActionLink("Recepty", "index", "recepta")</li>
+                        <li>@Html.ActionLink("Badania", "index", "badanie")</li>
+                        <li>@Html.ActionLink("Skierowania", "index", "skierowanie")</li>
+                    }
+                    @if (User.IsInRole("Lekarz"))
+                    {
+                        <li>@Html.ActionLink("Wizyty", "index", "wizyta")</li>
+                        <li>@Html.ActionLink("Recepty", "index", "recepta")</li>
+                        <li>@Html.ActionLink("Badania", "index", "badanie")</li>
+                        <li>@Html.ActionLink("Skierowania", "index", "skierowanie")</li>
+                        <li>@Html.ActionLink("Choroby", "index", "choroba")</li>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Lekarze", "index", "lekarz")</li>
+                        <li>@Html.ActionLink("Pacjenci", "index", "pacjent")</li>
+                    }
+                    <li>@Html.ActionLink("O firmie", "About", "Home")</li>
+                    <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

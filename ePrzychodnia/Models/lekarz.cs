@@ -23,13 +23,11 @@ namespace ePrzychodnia.Models
         }
     
         public int id_lekarz { get; set; }
-        public Nullable<int> id_adres { get; set; }
         public string nazwisko { get; set; }
         public string imie { get; set; }
         public string pesel { get; set; }
         public string telefon { get; set; }
     
-        public virtual adres adres { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<badanie> badanie { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

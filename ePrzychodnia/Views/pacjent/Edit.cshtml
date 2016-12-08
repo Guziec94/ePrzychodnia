@@ -1,20 +1,21 @@
-﻿@model ePrzychodnia.Models.lekarz
+﻿@model ePrzychodnia.Models.pacjent
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Dodawanie nowego lekarza</h2>
+<h2>Edit</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
+        <h4>pacjent</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-              
+        @Html.HiddenFor(model => model.id_pacjent)
 
         <div class="form-group">
             @Html.LabelFor(model => model.nazwisko, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -29,6 +30,14 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.imie, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.imie, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.wiek, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.wiek, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.wiek, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -50,14 +59,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Dodaj lekarza" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Powrót do spisu lekarzy", "Index")
+    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {

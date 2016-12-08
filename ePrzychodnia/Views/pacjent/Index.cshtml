@@ -1,13 +1,13 @@
-﻿@model IEnumerable<ePrzychodnia.Models.lekarz>
+﻿@model IEnumerable<ePrzychodnia.Models.pacjent>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Zarządzanie lekarzami oraz ich danymi</h2>
+<h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Dodaj nowego lekarza", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -16,6 +16,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.imie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.wiek)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.pesel)
@@ -35,16 +38,18 @@
             @Html.DisplayFor(modelItem => item.imie)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.wiek)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.pesel)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.telefon)
         </td>
-        
         <td>
-            @Html.ActionLink("Edytuj", "Edit", new { id=item.id_lekarz }) |
-            @Html.ActionLink("Szczegóły", "Details", new { id=item.id_lekarz }) |
-            @Html.ActionLink("Usuń", "Delete", new { id=item.id_lekarz })
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_pacjent }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_pacjent }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_pacjent })
         </td>
     </tr>
 }

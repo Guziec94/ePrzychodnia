@@ -10,107 +10,112 @@ using ePrzychodnia.Models;
 
 namespace ePrzychodnia.Controllers
 {
-    public class lekarzController : Controller
+    public class godziny_przyjecController : Controller
     {
         private ePrzychodniaEntities db = new ePrzychodniaEntities();
 
-        // GET: lekarz
+        // GET: godziny_przyjec
         public ActionResult Index()
         {
-            var lekarz = db.lekarz;
-            return View(lekarz.ToList());
+            var godziny_przyjec = db.godziny_przyjec.Include(g => g.lekarz);
+            return View(godziny_przyjec.ToList());
         }
 
-        // GET: lekarz/Details/5
+        // GET: godziny_przyjec/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            lekarz lekarz = db.lekarz.Find(id);
-            if (lekarz == null)
+            godziny_przyjec godziny_przyjec = db.godziny_przyjec.Find(id);
+            if (godziny_przyjec == null)
             {
                 return HttpNotFound();
             }
-            return View(lekarz);
+            return View(godziny_przyjec);
         }
 
-        // GET: lekarz/Create
+        // GET: godziny_przyjec/Create
         public ActionResult Create()
-        {   return View();
+        {
+            ViewBag.id_pracownik = new SelectList(db.lekarz, "id_lekarz", "nazwisko");
+            return View();
         }
 
-        // POST: lekarz/Create
+        // POST: godziny_przyjec/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_lekarz,nazwisko,imie,pesel,telefon")] lekarz lekarz)
+        public ActionResult Create([Bind(Include = "id_godziny_przyjec,id_pracownik,dzien_tygodnia,godz_od,godz_do")] godziny_przyjec godziny_przyjec)
         {
             if (ModelState.IsValid)
             {
-                db.lekarz.Add(lekarz);
+                db.godziny_przyjec.Add(godziny_przyjec);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(lekarz);
+            ViewBag.id_pracownik = new SelectList(db.lekarz, "id_lekarz", "nazwisko", godziny_przyjec.id_pracownik);
+            return View(godziny_przyjec);
         }
 
-        // GET: lekarz/Edit/5
+        // GET: godziny_przyjec/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            lekarz lekarz = db.lekarz.Find(id);
-            if (lekarz == null)
+            godziny_przyjec godziny_przyjec = db.godziny_przyjec.Find(id);
+            if (godziny_przyjec == null)
             {
                 return HttpNotFound();
             }
-            return View(lekarz);
+            ViewBag.id_pracownik = new SelectList(db.lekarz, "id_lekarz", "nazwisko", godziny_przyjec.id_pracownik);
+            return View(godziny_przyjec);
         }
 
-        // POST: lekarz/Edit/5
+        // POST: godziny_przyjec/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_lekarz,nazwisko,imie,pesel,telefon")] lekarz lekarz)
+        public ActionResult Edit([Bind(Include = "id_godziny_przyjec,id_pracownik,dzien_tygodnia,godz_od,godz_do")] godziny_przyjec godziny_przyjec)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(lekarz).State = EntityState.Modified;
+                db.Entry(godziny_przyjec).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(lekarz);
+            ViewBag.id_pracownik = new SelectList(db.lekarz, "id_lekarz", "nazwisko", godziny_przyjec.id_pracownik);
+            return View(godziny_przyjec);
         }
 
-        // GET: lekarz/Delete/5
+        // GET: godziny_przyjec/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            lekarz lekarz = db.lekarz.Find(id);
-            if (lekarz == null)
+            godziny_przyjec godziny_przyjec = db.godziny_przyjec.Find(id);
+            if (godziny_przyjec == null)
             {
                 return HttpNotFound();
             }
-            return View(lekarz);
+            return View(godziny_przyjec);
         }
 
-        // POST: lekarz/Delete/5
+        // POST: godziny_przyjec/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            lekarz lekarz = db.lekarz.Find(id);
-            db.lekarz.Remove(lekarz);
+            godziny_przyjec godziny_przyjec = db.godziny_przyjec.Find(id);
+            db.godziny_przyjec.Remove(godziny_przyjec);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -10,107 +10,116 @@ using ePrzychodnia.Models;
 
 namespace ePrzychodnia.Controllers
 {
-    public class lekarzController : Controller
+    public class receptaController : Controller
     {
         private ePrzychodniaEntities db = new ePrzychodniaEntities();
 
-        // GET: lekarz
+        // GET: recepta
         public ActionResult Index()
         {
-            var lekarz = db.lekarz;
-            return View(lekarz.ToList());
+            var recepta = db.recepta.Include(r => r.lekarz).Include(r => r.pacjent);
+            return View(recepta.ToList());
         }
 
-        // GET: lekarz/Details/5
+        // GET: recepta/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            lekarz lekarz = db.lekarz.Find(id);
-            if (lekarz == null)
+            recepta recepta = db.recepta.Find(id);
+            if (recepta == null)
             {
                 return HttpNotFound();
             }
-            return View(lekarz);
+            return View(recepta);
         }
 
-        // GET: lekarz/Create
+        // GET: recepta/Create
         public ActionResult Create()
-        {   return View();
+        {
+            ViewBag.id_lekarz = new SelectList(db.lekarz, "id_lekarz", "nazwisko");
+            ViewBag.id_pacjent = new SelectList(db.pacjent, "id_pacjent", "nazwisko");
+            return View();
         }
 
-        // POST: lekarz/Create
+        // POST: recepta/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_lekarz,nazwisko,imie,pesel,telefon")] lekarz lekarz)
+        public ActionResult Create([Bind(Include = "id_recepta,id_pacjent,id_lekarz,lek_i_dawkowanie,data_wystawienia")] recepta recepta)
         {
             if (ModelState.IsValid)
             {
-                db.lekarz.Add(lekarz);
+                db.recepta.Add(recepta);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(lekarz);
+            ViewBag.id_lekarz = new SelectList(db.lekarz, "id_lekarz", "nazwisko", recepta.id_lekarz);
+            ViewBag.id_pacjent = new SelectList(db.pacjent, "id_pacjent", "nazwisko", recepta.id_pacjent);
+            return View(recepta);
         }
 
-        // GET: lekarz/Edit/5
+        // GET: recepta/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            lekarz lekarz = db.lekarz.Find(id);
-            if (lekarz == null)
+            recepta recepta = db.recepta.Find(id);
+            if (recepta == null)
             {
                 return HttpNotFound();
             }
-            return View(lekarz);
+            ViewBag.id_lekarz = new SelectList(db.lekarz, "id_lekarz", "nazwisko", recepta.id_lekarz);
+            ViewBag.id_pacjent = new SelectList(db.pacjent, "id_pacjent", "nazwisko", recepta.id_pacjent);
+            return View(recepta);
         }
 
-        // POST: lekarz/Edit/5
+        // POST: recepta/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_lekarz,nazwisko,imie,pesel,telefon")] lekarz lekarz)
+        public ActionResult Edit([Bind(Include = "id_recepta,id_pacjent,id_lekarz,lek_i_dawkowanie,data_wystawienia")] recepta recepta)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(lekarz).State = EntityState.Modified;
+                db.Entry(recepta).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(lekarz);
+            ViewBag.id_lekarz = new SelectList(db.lekarz, "id_lekarz", "nazwisko", recepta.id_lekarz);
+            ViewBag.id_pacjent = new SelectList(db.pacjent, "id_pacjent", "nazwisko", recepta.id_pacjent);
+            return View(recepta);
         }
 
-        // GET: lekarz/Delete/5
+        // GET: recepta/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            lekarz lekarz = db.lekarz.Find(id);
-            if (lekarz == null)
+            recepta recepta = db.recepta.Find(id);
+            if (recepta == null)
             {
                 return HttpNotFound();
             }
-            return View(lekarz);
+            return View(recepta);
         }
 
-        // POST: lekarz/Delete/5
+        // POST: recepta/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            lekarz lekarz = db.lekarz.Find(id);
-            db.lekarz.Remove(lekarz);
+            recepta recepta = db.recepta.Find(id);
+            db.recepta.Remove(recepta);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -4,20 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ePrzychodniaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="adres">
-          <Key>
-            <PropertyRef Name="id_adres" />
-          </Key>
-          <Property Name="id_adres" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="kraj" Type="varchar" MaxLength="50" />
-          <Property Name="wojewodztwo" Type="varchar" MaxLength="50" />
-          <Property Name="miasto" Type="varchar" MaxLength="50" />
-          <Property Name="kod_pocztowy" Type="varchar" MaxLength="6" />
-          <Property Name="ulica" Type="varchar" MaxLength="50" />
-          <Property Name="nr_budynku" Type="int" />
-          <Property Name="nr_domu" Type="int" />
-        </EntityType>
+    <Schema Namespace="ePrzychodniaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -103,7 +90,6 @@
             <PropertyRef Name="id_lekarz" />
           </Key>
           <Property Name="id_lekarz" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_adres" Type="int" />
           <Property Name="nazwisko" Type="varchar" MaxLength="50" />
           <Property Name="imie" Type="varchar" MaxLength="50" />
           <Property Name="pesel" Type="varchar" MaxLength="11" />
@@ -114,7 +100,6 @@
             <PropertyRef Name="id_pacjent" />
           </Key>
           <Property Name="id_pacjent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_adres" Type="int" />
           <Property Name="nazwisko" Type="varchar" MaxLength="50" />
           <Property Name="imie" Type="varchar" MaxLength="50" />
           <Property Name="wiek" Type="int" />
@@ -256,30 +241,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_pacjent_adres">
-          <End Role="adres" Type="Self.adres" Multiplicity="0..1" />
-          <End Role="pacjent" Type="Self.pacjent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="adres">
-              <PropertyRef Name="id_adres" />
-            </Principal>
-            <Dependent Role="pacjent">
-              <PropertyRef Name="id_adres" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_pracownik_adres">
-          <End Role="adres" Type="Self.adres" Multiplicity="0..1" />
-          <End Role="lekarz" Type="Self.lekarz" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="adres">
-              <PropertyRef Name="id_adres" />
-            </Principal>
-            <Dependent Role="lekarz">
-              <PropertyRef Name="id_adres" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_recepta_pacjent">
           <End Role="pacjent" Type="Self.pacjent" Multiplicity="0..1" />
           <End Role="recepta" Type="Self.recepta" Multiplicity="*" />
@@ -353,7 +314,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ePrzychodniaModelStoreContainer">
-          <EntitySet Name="adres" EntityType="Self.adres" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
@@ -396,14 +356,6 @@
             <End Role="lekarz" EntitySet="lekarz" />
             <End Role="godziny_przyjec" EntitySet="godziny_przyjec" />
           </AssociationSet>
-          <AssociationSet Name="FK_pacjent_adres" Association="Self.FK_pacjent_adres">
-            <End Role="adres" EntitySet="adres" />
-            <End Role="pacjent" EntitySet="pacjent" />
-          </AssociationSet>
-          <AssociationSet Name="FK_pracownik_adres" Association="Self.FK_pracownik_adres">
-            <End Role="adres" EntitySet="adres" />
-            <End Role="lekarz" EntitySet="lekarz" />
-          </AssociationSet>
           <AssociationSet Name="FK_recepta_pacjent" Association="Self.FK_recepta_pacjent">
             <End Role="pacjent" EntitySet="pacjent" />
             <End Role="recepta" EntitySet="recepta" />
@@ -429,26 +381,10 @@
             <End Role="wizyta" EntitySet="wizyta" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ePrzychodniaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="adres">
-          <Key>
-            <PropertyRef Name="id_adres" />
-          </Key>
-          <Property Name="id_adres" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="kraj" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="wojewodztwo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="miasto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="kod_pocztowy" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="ulica" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="nr_budynku" Type="Int32" />
-          <Property Name="nr_domu" Type="Int32" />
-          <NavigationProperty Name="pacjent" Relationship="Self.FK_pacjent_adres" FromRole="adres" ToRole="pacjent" />
-          <NavigationProperty Name="lekarz" Relationship="Self.FK_pracownik_adres" FromRole="adres" ToRole="lekarz" />
-        </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -537,12 +473,10 @@
             <PropertyRef Name="id_lekarz" />
           </Key>
           <Property Name="id_lekarz" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_adres" Type="Int32" />
           <Property Name="nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="pesel" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="telefon" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="adres" Relationship="Self.FK_pracownik_adres" FromRole="lekarz" ToRole="adres" />
           <NavigationProperty Name="badanie" Relationship="Self.FK_badanie_lekarz" FromRole="lekarz" ToRole="badanie" />
           <NavigationProperty Name="godziny_przyjec" Relationship="Self.FK_godziny_przyjec_pracownik" FromRole="lekarz" ToRole="godziny_przyjec" />
           <NavigationProperty Name="recepta" Relationship="Self.FK_recepta_pracownik" FromRole="lekarz" ToRole="recepta" />
@@ -552,13 +486,11 @@
             <PropertyRef Name="id_pacjent" />
           </Key>
           <Property Name="id_pacjent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_adres" Type="Int32" />
           <Property Name="nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="wiek" Type="Int32" />
           <Property Name="pesel" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="telefon" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="adres" Relationship="Self.FK_pacjent_adres" FromRole="pacjent" ToRole="adres" />
           <NavigationProperty Name="badanie" Relationship="Self.FK_badanie_pacjent" FromRole="pacjent" ToRole="badanie" />
           <NavigationProperty Name="recepta" Relationship="Self.FK_recepta_pacjent" FromRole="pacjent" ToRole="recepta" />
         </EntityType>
@@ -613,30 +545,6 @@
           <NavigationProperty Name="recepta" Relationship="Self.FK_wizyta_recepta" FromRole="wizyta" ToRole="recepta" />
           <NavigationProperty Name="skierowanie" Relationship="Self.FK_wizyta_skierowanie" FromRole="wizyta" ToRole="skierowanie" />
         </EntityType>
-        <Association Name="FK_pacjent_adres">
-          <End Role="adres" Type="Self.adres" Multiplicity="0..1" />
-          <End Role="pacjent" Type="Self.pacjent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="adres">
-              <PropertyRef Name="id_adres" />
-            </Principal>
-            <Dependent Role="pacjent">
-              <PropertyRef Name="id_adres" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_pracownik_adres">
-          <End Role="adres" Type="Self.adres" Multiplicity="0..1" />
-          <End Role="lekarz" Type="Self.lekarz" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="adres">
-              <PropertyRef Name="id_adres" />
-            </Principal>
-            <Dependent Role="lekarz">
-              <PropertyRef Name="id_adres" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -778,7 +686,6 @@
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
         </Association>
         <EntityContainer Name="ePrzychodniaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="adres" EntityType="Self.adres" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
@@ -792,14 +699,6 @@
           <EntitySet Name="skierowanie" EntityType="Self.skierowanie" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="wizyta" EntityType="Self.wizyta" />
-          <AssociationSet Name="FK_pacjent_adres" Association="Self.FK_pacjent_adres">
-            <End Role="adres" EntitySet="adres" />
-            <End Role="pacjent" EntitySet="pacjent" />
-          </AssociationSet>
-          <AssociationSet Name="FK_pracownik_adres" Association="Self.FK_pracownik_adres">
-            <End Role="adres" EntitySet="adres" />
-            <End Role="lekarz" EntitySet="lekarz" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -855,20 +754,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ePrzychodniaModelStoreContainer" CdmEntityContainer="ePrzychodniaEntities">
-          <EntitySetMapping Name="adres">
-            <EntityTypeMapping TypeName="ePrzychodniaModel.adres">
-              <MappingFragment StoreEntitySet="adres">
-                <ScalarProperty Name="id_adres" ColumnName="id_adres" />
-                <ScalarProperty Name="kraj" ColumnName="kraj" />
-                <ScalarProperty Name="wojewodztwo" ColumnName="wojewodztwo" />
-                <ScalarProperty Name="miasto" ColumnName="miasto" />
-                <ScalarProperty Name="kod_pocztowy" ColumnName="kod_pocztowy" />
-                <ScalarProperty Name="ulica" ColumnName="ulica" />
-                <ScalarProperty Name="nr_budynku" ColumnName="nr_budynku" />
-                <ScalarProperty Name="nr_domu" ColumnName="nr_domu" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
             <EntityTypeMapping TypeName="ePrzychodniaModel.AspNetRoles">
               <MappingFragment StoreEntitySet="AspNetRoles">
@@ -950,7 +835,6 @@
             <EntityTypeMapping TypeName="ePrzychodniaModel.lekarz">
               <MappingFragment StoreEntitySet="lekarz">
                 <ScalarProperty Name="id_lekarz" ColumnName="id_lekarz" />
-                <ScalarProperty Name="id_adres" ColumnName="id_adres" />
                 <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />
                 <ScalarProperty Name="imie" ColumnName="imie" />
                 <ScalarProperty Name="pesel" ColumnName="pesel" />
@@ -962,7 +846,6 @@
             <EntityTypeMapping TypeName="ePrzychodniaModel.pacjent">
               <MappingFragment StoreEntitySet="pacjent">
                 <ScalarProperty Name="id_pacjent" ColumnName="id_pacjent" />
-                <ScalarProperty Name="id_adres" ColumnName="id_adres" />
                 <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />
                 <ScalarProperty Name="imie" ColumnName="imie" />
                 <ScalarProperty Name="wiek" ColumnName="wiek" />

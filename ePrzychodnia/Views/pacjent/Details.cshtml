@@ -1,13 +1,13 @@
-﻿@model ePrzychodnia.Models.lekarz
+﻿@model ePrzychodnia.Models.pacjent
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Details";
 }
 
-<h2>Delete</h2>
+<h2>Details</h2>
 
-<h3>Na pewno usunąć tego lekarza?</h3>
 <div>
+    <h4>pacjent</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -27,6 +27,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.wiek)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.wiek)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.pesel)
         </dt>
 
@@ -42,14 +50,9 @@
             @Html.DisplayFor(model => model.telefon)
         </dd>
 
-       
     </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-        <input type="submit" value="Usuń lekarza" class="btn btn-default" />
-        <div class="form-actions no-color">
-            @Html.ActionLink("Powrót do spisu lekarzy", "Index")
-        </div>
-    }
 </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_pacjent }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

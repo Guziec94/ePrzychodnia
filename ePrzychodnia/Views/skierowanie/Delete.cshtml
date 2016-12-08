@@ -1,0 +1,56 @@
+﻿@model ePrzychodnia.Models.skierowanie
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>skierowanie</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_pacjent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_pacjent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_badanie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_badanie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_lekarz)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_lekarz)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_wystawienia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_wystawienia)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
