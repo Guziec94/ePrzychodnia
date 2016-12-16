@@ -27,12 +27,19 @@ namespace ePrzychodnia.Models
         public string imie { get; set; }
         public string pesel { get; set; }
         public string telefon { get; set; }
-    
+        public string id_uzytkownika { get; set; }
+
+        public string UserRoles { get; set; } = "Lekarz";
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string ConfirmPassword { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<badanie> badanie { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<godziny_przyjec> godziny_przyjec { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<recepta> recepta { get; set; }
+        public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }

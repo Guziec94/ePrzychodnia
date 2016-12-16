@@ -53,7 +53,22 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - ePrzychodnia</p>
+            @if (User.IsInRole("Admin"))
+            {
+                <p>&copy; @DateTime.Now.Year - ePrzychodnia - Admin</p>
+            }
+            @if (User.IsInRole("Lekarz"))
+            {
+                <p>&copy; @DateTime.Now.Year - ePrzychodnia - Lekarz</p>
+            }
+            @if (User.IsInRole("Pacjent"))
+            {
+                <p>&copy; @DateTime.Now.Year - ePrzychodnia - Pacjent</p>
+            }
+            @if (!(User.Identity.IsAuthenticated))
+            {
+                <p>&copy; @DateTime.Now.Year - ePrzychodnia</p>
+            }
         </footer>
     </div>
 

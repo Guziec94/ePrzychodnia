@@ -94,6 +94,7 @@
           <Property Name="imie" Type="varchar" MaxLength="50" />
           <Property Name="pesel" Type="varchar" MaxLength="11" />
           <Property Name="telefon" Type="varchar" MaxLength="9" />
+          <Property Name="id_uzytkownika" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="pacjent">
           <Key>
@@ -105,6 +106,7 @@
           <Property Name="wiek" Type="int" />
           <Property Name="pesel" Type="varchar" MaxLength="11" />
           <Property Name="telefon" Type="varchar" MaxLength="9" />
+          <Property Name="id_uzytkownika" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="recepta">
           <Key>
@@ -241,6 +243,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_lekarz_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="lekarz" Type="Self.lekarz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="lekarz">
+              <PropertyRef Name="id_uzytkownika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pacjent_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="pacjent" Type="Self.pacjent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="pacjent">
+              <PropertyRef Name="id_uzytkownika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_recepta_pacjent">
           <End Role="pacjent" Type="Self.pacjent" Multiplicity="0..1" />
           <End Role="recepta" Type="Self.recepta" Multiplicity="*" />
@@ -356,6 +382,14 @@
             <End Role="lekarz" EntitySet="lekarz" />
             <End Role="godziny_przyjec" EntitySet="godziny_przyjec" />
           </AssociationSet>
+          <AssociationSet Name="FK_lekarz_AspNetUsers" Association="Self.FK_lekarz_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="lekarz" EntitySet="lekarz" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pacjent_AspNetUsers" Association="Self.FK_pacjent_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="pacjent" EntitySet="pacjent" />
+          </AssociationSet>
           <AssociationSet Name="FK_recepta_pacjent" Association="Self.FK_recepta_pacjent">
             <End Role="pacjent" EntitySet="pacjent" />
             <End Role="recepta" EntitySet="recepta" />
@@ -433,6 +467,8 @@
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <NavigationProperty Name="lekarz" Relationship="ePrzychodniaModel.FK_lekarz_AspNetUsers" FromRole="AspNetUsers" ToRole="lekarz" />
+          <NavigationProperty Name="pacjent" Relationship="ePrzychodniaModel.FK_pacjent_AspNetUsers" FromRole="AspNetUsers" ToRole="pacjent" />
         </EntityType>
         <EntityType Name="badanie">
           <Key>
@@ -480,6 +516,8 @@
           <NavigationProperty Name="badanie" Relationship="Self.FK_badanie_lekarz" FromRole="lekarz" ToRole="badanie" />
           <NavigationProperty Name="godziny_przyjec" Relationship="Self.FK_godziny_przyjec_pracownik" FromRole="lekarz" ToRole="godziny_przyjec" />
           <NavigationProperty Name="recepta" Relationship="Self.FK_recepta_pracownik" FromRole="lekarz" ToRole="recepta" />
+          <Property Name="id_uzytkownika" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="ePrzychodniaModel.FK_lekarz_AspNetUsers" FromRole="lekarz" ToRole="AspNetUsers" />
         </EntityType>
         <EntityType Name="pacjent">
           <Key>
@@ -493,6 +531,8 @@
           <Property Name="telefon" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="badanie" Relationship="Self.FK_badanie_pacjent" FromRole="pacjent" ToRole="badanie" />
           <NavigationProperty Name="recepta" Relationship="Self.FK_recepta_pacjent" FromRole="pacjent" ToRole="recepta" />
+          <Property Name="id_uzytkownika" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="ePrzychodniaModel.FK_pacjent_AspNetUsers" FromRole="pacjent" ToRole="AspNetUsers" />
         </EntityType>
         <EntityType Name="recepta">
           <Key>
@@ -747,7 +787,39 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <AssociationSet Name="FK_lekarz_AspNetUsers" Association="ePrzychodniaModel.FK_lekarz_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="lekarz" EntitySet="lekarz" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pacjent_AspNetUsers" Association="ePrzychodniaModel.FK_pacjent_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="pacjent" EntitySet="pacjent" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_lekarz_AspNetUsers">
+          <End Type="ePrzychodniaModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
+          <End Type="ePrzychodniaModel.lekarz" Role="lekarz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="lekarz">
+              <PropertyRef Name="id_uzytkownika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pacjent_AspNetUsers">
+          <End Type="ePrzychodniaModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
+          <End Type="ePrzychodniaModel.pacjent" Role="pacjent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="pacjent">
+              <PropertyRef Name="id_uzytkownika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -834,6 +906,7 @@
           <EntitySetMapping Name="lekarz">
             <EntityTypeMapping TypeName="ePrzychodniaModel.lekarz">
               <MappingFragment StoreEntitySet="lekarz">
+                <ScalarProperty Name="id_uzytkownika" ColumnName="id_uzytkownika" />
                 <ScalarProperty Name="id_lekarz" ColumnName="id_lekarz" />
                 <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />
                 <ScalarProperty Name="imie" ColumnName="imie" />
@@ -845,6 +918,7 @@
           <EntitySetMapping Name="pacjent">
             <EntityTypeMapping TypeName="ePrzychodniaModel.pacjent">
               <MappingFragment StoreEntitySet="pacjent">
+                <ScalarProperty Name="id_uzytkownika" ColumnName="id_uzytkownika" />
                 <ScalarProperty Name="id_pacjent" ColumnName="id_pacjent" />
                 <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />
                 <ScalarProperty Name="imie" ColumnName="imie" />

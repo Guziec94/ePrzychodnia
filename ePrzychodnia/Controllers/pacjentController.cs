@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ePrzychodnia.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ePrzychodnia.Controllers
 {
@@ -46,13 +48,27 @@ namespace ePrzychodnia.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_pacjent,nazwisko,imie,wiek,pesel,telefon")] pacjent pacjent)
+        public ActionResult Create([Bind(Include = "id_pacjent,nazwisko,imie,wiek,pesel,telefon,Email,Password,ConfirmPassword")] pacjent pacjent)
         {
+            if (pacjent.Email == null || pacjent.Password == null || pacjent.Password != pacjent.ConfirmPassword)//tego nie obejmuje sprawdzenie modelu, dlatego jest sprawdzane oddzielnie
+            {
+                return View(pacjent);
+            }
             if (ModelState.IsValid)
             {
-                db.pacjent.Add(pacjent);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                ApplicationDbContext context = new ApplicationDbContext();
+                var UserManagerr = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+                var user = new ApplicationUser { UserName = pacjent.Email, Email = pacjent.Email };
+                var result = UserManagerr.Create(user, pacjent.Password);
+                if (result.Succeeded)
+                {
+                    UserManagerr.AddToRoleAsync(user.Id, pacjent.UserRoles);
+                    pacjent.id_uzytkownika = user.Id;
+                    db.pacjent.Add(pacjent);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
             return View(pacjent);
