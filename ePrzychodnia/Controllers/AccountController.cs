@@ -125,6 +125,12 @@ namespace ePrzychodnia.Controllers
 
                     await this.UserManager.AddToRoleAsync(user.Id, "Pacjent");//domyslna rola to pacjent
 
+                    ePrzychodniaEntities db = new ePrzychodniaEntities();
+                    pacjent nowy_pacjent = new pacjent();
+                    nowy_pacjent.id_uzytkownika = user.Id;
+                    db.pacjent.Add(nowy_pacjent);
+                    db.SaveChanges();
+
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);

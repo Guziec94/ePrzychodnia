@@ -77,16 +77,14 @@ namespace ePrzychodnia.Controllers
         // GET: pacjent/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            ePrzychodniaEntities db = new ePrzychodniaEntities();
+            string cos = User.Identity.GetUserId();
+            pacjent zalogowany_pacjent = db.pacjent.FirstOrDefault(i => i.id_uzytkownika == cos);
+            if (zalogowany_pacjent != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View(zalogowany_pacjent);
             }
-            pacjent pacjent = db.pacjent.Find(id);
-            if (pacjent == null)
-            {
-                return HttpNotFound();
-            }
-            return View(pacjent);
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         // POST: pacjent/Edit/5
@@ -94,8 +92,9 @@ namespace ePrzychodnia.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_pacjent,nazwisko,imie,wiek,pesel,telefon")] pacjent pacjent)
+        public ActionResult Edit([Bind(Include = "id_pacjent,nazwisko,imie,wiek,pesel,telefon,id_uzytkownika")] pacjent pacjent)
         {
+            pacjent.id_uzytkownika= User.Identity.GetUserId();
             if (ModelState.IsValid)
             {
                 db.Entry(pacjent).State = EntityState.Modified;
