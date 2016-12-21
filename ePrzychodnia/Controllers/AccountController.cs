@@ -115,7 +115,7 @@ namespace ePrzychodnia.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                   // await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false); // Po rejestracji nie zostaje zalogowany
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -130,8 +130,8 @@ namespace ePrzychodnia.Controllers
                     nowy_pacjent.id_uzytkownika = user.Id;
                     db.pacjent.Add(nowy_pacjent);
                     db.SaveChanges();
-
-                    return RedirectToAction("Index", "Home");
+                    return Content("<script language='javascript' type='text/javascript'>alert('Rejestracja pomyślna, teraz możesz się zalogować. Nie zapomnij uzupełnić swoich danych.');window.location.href =\"http://localhost:1768/Account/Login\";</script>");
+                   // return RedirectToAction("login", "Account");
                 }
                 AddErrors(result);
             }
