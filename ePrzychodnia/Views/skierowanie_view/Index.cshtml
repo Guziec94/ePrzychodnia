@@ -24,18 +24,21 @@
 {
     foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.id_uzytkownika)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.C_Nazwisko_lekarza)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Data_wystawienia)
-            </td>
+        if (item.id_uzytkownika == ViewBag.data)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id_uzytkownika)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.C_Nazwisko_lekarza)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data_wystawienia)
+                </td>
            
-        </tr>
+            </tr>
+        }
     }
 }
 @if (User.IsInRole("Lekarz"))

@@ -23,26 +23,29 @@
         </th>
         <th></th>
     </tr>
-
+    
 @if (User.IsInRole("Pacjent"))
 {
     foreach (var item in Model)
     {
-    <tr>
+        if (item.id_uzytkownika == ViewBag.data)
+        {
+            <tr>
         
-        <td>
-            @Html.DisplayFor(modelItem => item.nazwisko)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nazwa_choroby)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.diagnoza)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.objawy)
-        </td>
-    </tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nazwisko)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nazwa_choroby)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.diagnoza)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.objawy)
+                </td>
+            </tr>
+        }
     }
 }
 @if (User.IsInRole("Lekarz"))

@@ -26,6 +26,8 @@
 {
     foreach (var item in Model)
     {
+        if (item.id_uzytkownika == ViewBag.data)
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.id_uzytkownika)
@@ -41,6 +43,7 @@
             </td>
            
         </tr>
+        }
     }
 }
 @if (User.IsInRole("Lekarz"))

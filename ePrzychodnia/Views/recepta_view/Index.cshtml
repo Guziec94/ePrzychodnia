@@ -45,17 +45,20 @@
 {
     foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.id_uzytkownika)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Data_wystawienia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nazwa_leku_i_dawkowanie)
-            </td>            
-        </tr>
+        if (item.id_uzytkownika == ViewBag.data)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id_uzytkownika)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data_wystawienia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nazwa_leku_i_dawkowanie)
+                </td>            
+            </tr>
+        }
     }
 }
 
