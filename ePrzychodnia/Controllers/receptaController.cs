@@ -53,6 +53,7 @@ namespace ePrzychodnia.Controllers
         {
             if (ModelState.IsValid)
             {
+                recepta.data_wystawienia = DateTime.Now;
                 db.recepta.Add(recepta);
                 db.SaveChanges();
                 return RedirectToAction("Index");

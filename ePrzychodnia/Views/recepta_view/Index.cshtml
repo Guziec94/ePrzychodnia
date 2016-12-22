@@ -6,9 +6,6 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -22,24 +19,44 @@
         </th>
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.id_uzytkownika)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Data_wystawienia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nazwa_leku_i_dawkowanie)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Numer_recepty }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Numer_recepty }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Numer_recepty })
-        </td>
-    </tr>
+@if (User.IsInRole("Lekarz"))
+{
+    foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_uzytkownika)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data_wystawienia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nazwa_leku_i_dawkowanie)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Numer_recepty }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Numer_recepty }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Numer_recepty })
+            </td>
+        </tr>
+    }
+}
+@if (User.IsInRole("Pacjent"))
+{
+    foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_uzytkownika)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data_wystawienia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nazwa_leku_i_dawkowanie)
+            </td>            
+        </tr>
+    }
 }
 
 </table>
