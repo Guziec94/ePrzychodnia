@@ -97,11 +97,13 @@ namespace ePrzychodnia.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_lekarz,nazwisko,imie,pesel,telefon")] lekarz lekarz)
+        public ActionResult Edit([Bind(Include = "id_lekarz,nazwisko,imie,pesel,telefon,id_uzytkownika")] lekarz lekarz)
         {
+            string org_id= (db.lekarz.AsNoTracking().Where(i => i.id_lekarz == lekarz.id_lekarz)).First().id_uzytkownika;
             if (ModelState.IsValid)
             {
                 db.Entry(lekarz).State = EntityState.Modified;
+                lekarz.id_uzytkownika = org_id;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

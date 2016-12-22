@@ -68,7 +68,7 @@
 <div>
     @if (PageContext.Page.User.IsInRole("Admin"))
     {
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Powrót do listy pacjentów", "Index", "Pacjent")
     }
     @if (PageContext.Page.User.IsInRole("Pacjent"))
     {

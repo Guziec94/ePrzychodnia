@@ -78,7 +78,12 @@ namespace ePrzychodnia.Controllers
         public ActionResult Edit(int? id)
         {
             ePrzychodniaEntities db = new ePrzychodniaEntities();
-            string cos = User.Identity.GetUserId();
+            if (id!=null)
+            {
+                pacjent pacjent_z_id = db.pacjent.FirstOrDefault(i => i.id_pacjent == id);
+                return View(pacjent_z_id);
+            }
+            string cos = User.Identity.GetUserId();//dla zalogowanego pacjenta, ktory uzupelnia swoje dane
             pacjent zalogowany_pacjent = db.pacjent.FirstOrDefault(i => i.id_uzytkownika == cos);
             if (zalogowany_pacjent != null)
             {
@@ -94,10 +99,11 @@ namespace ePrzychodnia.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id_pacjent,nazwisko,imie,wiek,pesel,telefon,id_uzytkownika")] pacjent pacjent)
         {
-            pacjent.id_uzytkownika= User.Identity.GetUserId();
+            string org_id = (db.pacjent.AsNoTracking().Where(i => i.id_pacjent== pacjent.id_pacjent)).First().id_uzytkownika;
             if (ModelState.IsValid)
             {
                 db.Entry(pacjent).State = EntityState.Modified;
+                pacjent.id_uzytkownika = org_id;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

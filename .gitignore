@@ -240,7 +240,3 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-
-
-# Denerwujący plik
-/ePrzychodnia/Web.config
