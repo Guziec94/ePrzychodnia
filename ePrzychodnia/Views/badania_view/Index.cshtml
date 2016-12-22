@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ePrzychodnia.Models.badania_view>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id_uzytkownika)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nazwisko_lekarza)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_badania)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.C_Opis_badania)
+        </th>
+        <th></th>
+    </tr>
+@if (User.IsInRole("Pacjent"))
+{
+    foreach (var item in Model)
+    {
+        if (item.id_uzytkownika == ViewBag.data)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_uzytkownika)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nazwisko_lekarza)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data_badania)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.C_Opis_badania)
+            </td>
+           
+        </tr>
+        }
+    }
+}
+@if (User.IsInRole("Lekarz"))
+{
+    foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_uzytkownika)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nazwisko_lekarza)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data_badania)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.C_Opis_badania)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id_badanie }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id_badanie }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id_badanie })
+            </td>
+        </tr>
+    }
+}
+
+</table>

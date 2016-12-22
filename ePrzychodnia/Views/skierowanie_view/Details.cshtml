@@ -1,0 +1,42 @@
+﻿@model ePrzychodnia.Models.skierowanie_view
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>skierowanie_view</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_uzytkownika)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_uzytkownika)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.C_Nazwisko_lekarza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.C_Nazwisko_lekarza)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data_wystawienia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data_wystawienia)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Numer_skierowania }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

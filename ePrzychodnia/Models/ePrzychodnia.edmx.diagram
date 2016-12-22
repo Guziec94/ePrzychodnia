@@ -16,7 +16,7 @@
         <EntityTypeShape EntityType="ePrzychodniaModel.pacjent" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ePrzychodniaModel.recepta" Width="1.5" PointX="8.25" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ePrzychodniaModel.skierowanie" Width="1.5" PointX="8.25" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ePrzychodniaModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ePrzychodniaModel.sysdiagrams" Width="1.5" PointX="11.125" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="ePrzychodniaModel.wizyta" Width="1.5" PointX="10.5" PointY="5.875" IsExpanded="true" />
         <AssociationConnector Association="ePrzychodniaModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="ePrzychodniaModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
@@ -32,6 +32,10 @@
         <AssociationConnector Association="ePrzychodniaModel.AspNetUserRoles" ManuallyRouted="false" />
         <AssociationConnector Association="ePrzychodniaModel.FK_lekarz_AspNetUsers" />
         <AssociationConnector Association="ePrzychodniaModel.FK_pacjent_AspNetUsers" />
+        <EntityTypeShape EntityType="ePrzychodniaModel.choroba_view" Width="1.5" PointX="10.75" PointY="0.5" />
+        <EntityTypeShape EntityType="ePrzychodniaModel.badania_view" Width="1.5" PointX="12.625" PointY="0.625" />
+        <EntityTypeShape EntityType="ePrzychodniaModel.recepta_view" Width="1.5" PointX="14.375" PointY="0.625" />
+        <EntityTypeShape EntityType="ePrzychodniaModel.skierowanie_view" Width="1.5" PointX="16.125" PointY="0.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ePrzychodnia.Models.skierowanie_view>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id_uzytkownika)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.C_Nazwisko_lekarza)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_wystawienia)
+        </th>
+        <th></th>
+    </tr>
+@if (User.IsInRole("Pacjent"))
+{
+    foreach (var item in Model)
+    {
+        if (item.id_uzytkownika == ViewBag.data)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id_uzytkownika)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.C_Nazwisko_lekarza)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data_wystawienia)
+                </td>
+           
+            </tr>
+        }
+    }
+}
+@if (User.IsInRole("Lekarz"))
+{
+    foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_uzytkownika)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.C_Nazwisko_lekarza)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data_wystawienia)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Numer_skierowania }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Numer_skierowania }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Numer_skierowania })
+        </td>
+    </tr>
+    }
+}
+
+</table>

@@ -151,6 +151,53 @@
           <Property Name="id_pacjent" Type="int" />
           <Property Name="data_wizyty" Type="datetime" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ePrzychodnia.dbo.badania_view' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="badania_view">
+          <Key>
+            <PropertyRef Name="id_badanie" />
+          </Key>
+          <Property Name="id_uzytkownika" Type="nvarchar" MaxLength="128" />
+          <Property Name="Nazwisko lekarza" Type="varchar" MaxLength="50" />
+          <Property Name="id_badanie" Type="int" Nullable="false" />
+          <Property Name="Data badania" Type="date" />
+          <Property Name=" Opis badania" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ePrzychodnia.dbo.choroba_view' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="choroba_view">
+          <Key>
+            <PropertyRef Name="id_pacjent" />
+          </Key>
+          <Property Name="id_pacjent" Type="int" Nullable="false" />
+          <Property Name="id_uzytkownika" Type="nvarchar" MaxLength="128" />
+          <Property Name="nazwisko" Type="varchar" MaxLength="50" />
+          <Property Name="nazwa_choroby" Type="varchar" MaxLength="50" />
+          <Property Name="diagnoza" Type="varchar" MaxLength="250" />
+          <Property Name="objawy" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ePrzychodnia.dbo.recepta_view' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="recepta_view">
+          <Key>
+            <PropertyRef Name="Numer recepty" />
+          </Key>
+          <Property Name="id_uzytkownika" Type="nvarchar" MaxLength="128" />
+          <Property Name="Numer recepty" Type="int" Nullable="false" />
+          <Property Name="Data wystawienia" Type="datetime" />
+          <Property Name="Nazwa leku i dawkowanie" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="skierowanie_view">
+          <Key>
+            <PropertyRef Name="Numer skierowania" />
+          </Key>
+          <Property Name="id_uzytkownika" Type="nvarchar" MaxLength="128" />
+          <Property Name="Numer skierowania" Type="int" Nullable="false" />
+          <Property Name=" Nazwisko lekarza" Type="varchar" MaxLength="50" />
+          <Property Name="Data wystawienia" Type="datetime" />
+        </EntityType>
         <Association Name="FK_badanie_lekarz">
           <End Role="lekarz" Type="Self.lekarz" Multiplicity="0..1" />
           <End Role="badanie" Type="Self.badanie" Multiplicity="*" />
@@ -354,6 +401,41 @@
           <EntitySet Name="skierowanie" EntityType="Self.skierowanie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="wizyta" EntityType="Self.wizyta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="badania_view" EntityType="Self.badania_view" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [badania_view].[id_uzytkownika] AS [id_uzytkownika], 
+    [badania_view].[Nazwisko lekarza] AS [Nazwisko lekarza], 
+    [badania_view].[id_badanie] AS [id_badanie], 
+    [badania_view].[Data badania] AS [Data badania], 
+    [badania_view].[ Opis badania] AS [ Opis badania]
+    FROM [dbo].[badania_view] AS [badania_view]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="choroba_view" EntityType="Self.choroba_view" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [choroba_view].[id_pacjent] AS [id_pacjent], 
+    [choroba_view].[id_uzytkownika] AS [id_uzytkownika], 
+    [choroba_view].[nazwisko] AS [nazwisko], 
+    [choroba_view].[nazwa_choroby] AS [nazwa_choroby], 
+    [choroba_view].[diagnoza] AS [diagnoza], 
+    [choroba_view].[objawy] AS [objawy]
+    FROM [dbo].[choroba_view] AS [choroba_view]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="recepta_view" EntityType="Self.recepta_view" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [recepta_view].[id_uzytkownika] AS [id_uzytkownika], 
+    [recepta_view].[Numer recepty] AS [Numer recepty], 
+    [recepta_view].[Data wystawienia] AS [Data wystawienia], 
+    [recepta_view].[Nazwa leku i dawkowanie] AS [Nazwa leku i dawkowanie]
+    FROM [dbo].[recepta_view] AS [recepta_view]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="skierowanie_view" EntityType="Self.skierowanie_view" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [skierowanie_view].[id_uzytkownika] AS [id_uzytkownika], 
+    [skierowanie_view].[Numer skierowania] AS [Numer skierowania], 
+    [skierowanie_view].[ Nazwisko lekarza] AS [ Nazwisko lekarza], 
+    [skierowanie_view].[Data wystawienia] AS [Data wystawienia]
+    FROM [dbo].[skierowanie_view] AS [skierowanie_view]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_badanie_lekarz" Association="Self.FK_badanie_lekarz">
             <End Role="lekarz" EntitySet="lekarz" />
             <End Role="badanie" EntitySet="badanie" />
@@ -795,6 +877,10 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="pacjent" EntitySet="pacjent" />
           </AssociationSet>
+          <EntitySet Name="choroba_view" EntityType="ePrzychodniaModel.choroba_view" />
+          <EntitySet Name="badania_view" EntityType="ePrzychodniaModel.badania_view" />
+          <EntitySet Name="recepta_view" EntityType="ePrzychodniaModel.recepta_view" />
+          <EntitySet Name="skierowanie_view" EntityType="ePrzychodniaModel.skierowanie_view" />
         </EntityContainer>
         <Association Name="FK_lekarz_AspNetUsers">
           <End Type="ePrzychodniaModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
@@ -820,6 +906,45 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="choroba_view">
+          <Key>
+            <PropertyRef Name="id_pacjent" />
+          </Key>
+          <Property Name="id_uzytkownika" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nazwa_choroby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="diagnoza" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="objawy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="id_pacjent" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="badania_view">
+          <Key>
+            <PropertyRef Name="id_badanie" />
+          </Key>
+          <Property Name="id_uzytkownika" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Nazwisko_lekarza" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_badanie" Type="Int32" Nullable="false" />
+          <Property Name="Data_badania" Type="DateTime" Precision="0" />
+          <Property Name="C_Opis_badania" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="recepta_view">
+          <Key>
+            <PropertyRef Name="Numer_recepty" />
+          </Key>
+          <Property Name="id_uzytkownika" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Numer_recepty" Type="Int32" Nullable="false" />
+          <Property Name="Data_wystawienia" Type="DateTime" Precision="3" />
+          <Property Name="Nazwa_leku_i_dawkowanie" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="skierowanie_view">
+          <Key>
+            <PropertyRef Name="Numer_skierowania" />
+          </Key>
+          <Property Name="id_uzytkownika" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Numer_skierowania" Type="Int32" Nullable="false" />
+          <Property Name="C_Nazwisko_lekarza" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Data_wystawienia" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -983,6 +1108,49 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="choroba_view">
+            <EntityTypeMapping TypeName="ePrzychodniaModel.choroba_view">
+              <MappingFragment StoreEntitySet="choroba_view">
+                <ScalarProperty Name="id_pacjent" ColumnName="id_pacjent" />
+                <ScalarProperty Name="objawy" ColumnName="objawy" />
+                <ScalarProperty Name="diagnoza" ColumnName="diagnoza" />
+                <ScalarProperty Name="nazwa_choroby" ColumnName="nazwa_choroby" />
+                <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />
+                <ScalarProperty Name="id_uzytkownika" ColumnName="id_uzytkownika" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="badania_view">
+            <EntityTypeMapping TypeName="ePrzychodniaModel.badania_view">
+              <MappingFragment StoreEntitySet="badania_view">
+                <ScalarProperty Name="C_Opis_badania" ColumnName=" Opis badania" />
+                <ScalarProperty Name="Data_badania" ColumnName="Data badania" />
+                <ScalarProperty Name="id_badanie" ColumnName="id_badanie" />
+                <ScalarProperty Name="Nazwisko_lekarza" ColumnName="Nazwisko lekarza" />
+                <ScalarProperty Name="id_uzytkownika" ColumnName="id_uzytkownika" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="recepta_view">
+            <EntityTypeMapping TypeName="ePrzychodniaModel.recepta_view">
+              <MappingFragment StoreEntitySet="recepta_view">
+                <ScalarProperty Name="Nazwa_leku_i_dawkowanie" ColumnName="Nazwa leku i dawkowanie" />
+                <ScalarProperty Name="Data_wystawienia" ColumnName="Data wystawienia" />
+                <ScalarProperty Name="Numer_recepty" ColumnName="Numer recepty" />
+                <ScalarProperty Name="id_uzytkownika" ColumnName="id_uzytkownika" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="skierowanie_view">
+            <EntityTypeMapping TypeName="ePrzychodniaModel.skierowanie_view">
+              <MappingFragment StoreEntitySet="skierowanie_view">
+                <ScalarProperty Name="Data_wystawienia" ColumnName="Data wystawienia" />
+                <ScalarProperty Name="C_Nazwisko_lekarza" ColumnName=" Nazwisko lekarza" />
+                <ScalarProperty Name="Numer_skierowania" ColumnName="Numer skierowania" />
+                <ScalarProperty Name="id_uzytkownika" ColumnName="id_uzytkownika" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

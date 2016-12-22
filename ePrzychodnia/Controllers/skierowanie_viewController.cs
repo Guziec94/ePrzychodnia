@@ -7,120 +7,112 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ePrzychodnia.Models;
+using Microsoft.AspNet.Identity;
 
 namespace ePrzychodnia.Controllers
 {
-    public class receptaController : Controller
+    public class skierowanie_viewController : Controller
     {
         private ePrzychodniaEntities db = new ePrzychodniaEntities();
 
-        // GET: recepta
+        // GET: skierowanie_view
         public ActionResult Index()
         {
-            var recepta = db.recepta.Include(r => r.lekarz).Include(r => r.pacjent);
-            return View(recepta.ToList());
+            ViewBag.data = User.Identity.GetUserId();
+            return View(db.skierowanie_view.ToList());
         }
 
-        // GET: recepta/Details/5
+        // GET: skierowanie_view/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            recepta recepta = db.recepta.Find(id);
-            if (recepta == null)
+            skierowanie_view skierowanie_view = db.skierowanie_view.Find(id);
+            if (skierowanie_view == null)
             {
                 return HttpNotFound();
             }
-            return View(recepta);
+            return View(skierowanie_view);
         }
 
-        // GET: recepta/Create
+        // GET: skierowanie_view/Create
         public ActionResult Create()
         {
-            ViewBag.id_lekarz = new SelectList(db.lekarz, "id_lekarz", "nazwisko");
-            ViewBag.id_pacjent = new SelectList(db.pacjent, "id_pacjent", "nazwisko");
             return View();
         }
 
-        // POST: recepta/Create
+        // POST: skierowanie_view/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_recepta,id_pacjent,id_lekarz,lek_i_dawkowanie,data_wystawienia")] recepta recepta)
+        public ActionResult Create([Bind(Include = "id_uzytkownika,Numer_skierowania,C_Nazwisko_lekarza,Data_wystawienia")] skierowanie_view skierowanie_view)
         {
             if (ModelState.IsValid)
             {
-                recepta.data_wystawienia = DateTime.Now;
-                db.recepta.Add(recepta);
+                db.skierowanie_view.Add(skierowanie_view);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.id_lekarz = new SelectList(db.lekarz, "id_lekarz", "nazwisko", recepta.id_lekarz);
-            ViewBag.id_pacjent = new SelectList(db.pacjent, "id_pacjent", "nazwisko", recepta.id_pacjent);
-            return View(recepta);
+            return View(skierowanie_view);
         }
 
-        // GET: recepta/Edit/5
+        // GET: skierowanie_view/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            recepta recepta = db.recepta.Find(id);
-            if (recepta == null)
+            skierowanie_view skierowanie_view = db.skierowanie_view.Find(id);
+            if (skierowanie_view == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.id_lekarz = new SelectList(db.lekarz, "id_lekarz", "nazwisko", recepta.id_lekarz);
-            ViewBag.id_pacjent = new SelectList(db.pacjent, "id_pacjent", "nazwisko", recepta.id_pacjent);
-            return View(recepta);
+            return View(skierowanie_view);
         }
 
-        // POST: recepta/Edit/5
+        // POST: skierowanie_view/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_recepta,id_pacjent,id_lekarz,lek_i_dawkowanie,data_wystawienia")] recepta recepta)
+        public ActionResult Edit([Bind(Include = "id_uzytkownika,Numer_skierowania,C_Nazwisko_lekarza,Data_wystawienia")] skierowanie_view skierowanie_view)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(recepta).State = EntityState.Modified;
+                db.Entry(skierowanie_view).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.id_lekarz = new SelectList(db.lekarz, "id_lekarz", "nazwisko", recepta.id_lekarz);
-            ViewBag.id_pacjent = new SelectList(db.pacjent, "id_pacjent", "nazwisko", recepta.id_pacjent);
-            return View(recepta);
+            return View(skierowanie_view);
         }
 
-        // GET: recepta/Delete/5
+        // GET: skierowanie_view/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            recepta recepta = db.recepta.Find(id);
-            if (recepta == null)
+            skierowanie_view skierowanie_view = db.skierowanie_view.Find(id);
+            if (skierowanie_view == null)
             {
                 return HttpNotFound();
             }
-            return View(recepta);
+            return View(skierowanie_view);
         }
 
-        // POST: recepta/Delete/5
+        // POST: skierowanie_view/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            recepta recepta = db.recepta.Find(id);
-            db.recepta.Remove(recepta);
+            skierowanie_view skierowanie_view = db.skierowanie_view.Find(id);
+            db.skierowanie_view.Remove(skierowanie_view);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

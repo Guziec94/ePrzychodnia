@@ -1,0 +1,42 @@
+﻿@model ePrzychodnia.Models.recepta_view
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>recepta_view</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_uzytkownika)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_uzytkownika)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data_wystawienia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data_wystawienia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nazwa_leku_i_dawkowanie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nazwa_leku_i_dawkowanie)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Numer_recepty }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

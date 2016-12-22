@@ -171,15 +171,19 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\badania_viewController.cs" />
     <Compile Include="Controllers\badanieController.cs" />
     <Compile Include="Controllers\chorobaController.cs" />
+    <Compile Include="Controllers\choroba_viewController.cs" />
     <Compile Include="Controllers\godziny_przyjecController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\lekarzController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\pacjentController.cs" />
     <Compile Include="Controllers\receptaController.cs" />
+    <Compile Include="Controllers\recepta_viewController.cs" />
     <Compile Include="Controllers\skierowanieController.cs" />
+    <Compile Include="Controllers\skierowanie_viewController.cs" />
     <Compile Include="Controllers\wizytaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -197,10 +201,16 @@
     <Compile Include="Models\AspNetUsers.cs">
       <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\badania_view.cs">
+      <DependentUpon>ePrzychodnia.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\badanie.cs">
       <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\choroba.cs">
+      <DependentUpon>ePrzychodnia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\choroba_view.cs">
       <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ePrzychodnia.Context.cs">
@@ -232,7 +242,13 @@
     <Compile Include="Models\recepta.cs">
       <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\recepta_view.cs">
+      <DependentUpon>ePrzychodnia.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\skierowanie.cs">
+      <DependentUpon>ePrzychodnia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\skierowanie_view.cs">
       <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
@@ -367,6 +383,26 @@
     <Content Include="Views\wizyta\Details.cshtml" />
     <Content Include="Views\wizyta\Edit.cshtml" />
     <Content Include="Views\wizyta\Index.cshtml" />
+    <Content Include="Views\choroba_view\Create.cshtml" />
+    <Content Include="Views\choroba_view\Delete.cshtml" />
+    <Content Include="Views\choroba_view\Details.cshtml" />
+    <Content Include="Views\choroba_view\Edit.cshtml" />
+    <Content Include="Views\choroba_view\Index.cshtml" />
+    <Content Include="Views\badania_view\Create.cshtml" />
+    <Content Include="Views\badania_view\Delete.cshtml" />
+    <Content Include="Views\badania_view\Details.cshtml" />
+    <Content Include="Views\badania_view\Edit.cshtml" />
+    <Content Include="Views\badania_view\Index.cshtml" />
+    <Content Include="Views\recepta_view\Create.cshtml" />
+    <Content Include="Views\recepta_view\Delete.cshtml" />
+    <Content Include="Views\recepta_view\Details.cshtml" />
+    <Content Include="Views\recepta_view\Edit.cshtml" />
+    <Content Include="Views\recepta_view\Index.cshtml" />
+    <Content Include="Views\skierowanie_view\Create.cshtml" />
+    <Content Include="Views\skierowanie_view\Delete.cshtml" />
+    <Content Include="Views\skierowanie_view\Details.cshtml" />
+    <Content Include="Views\skierowanie_view\Edit.cshtml" />
+    <Content Include="Views\skierowanie_view\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

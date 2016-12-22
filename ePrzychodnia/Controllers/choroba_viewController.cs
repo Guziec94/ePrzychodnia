@@ -7,120 +7,112 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ePrzychodnia.Models;
+using Microsoft.AspNet.Identity;
 
 namespace ePrzychodnia.Controllers
 {
-    public class receptaController : Controller
+    public class choroba_viewController : Controller
     {
         private ePrzychodniaEntities db = new ePrzychodniaEntities();
 
-        // GET: recepta
+        // GET: choroba_view
         public ActionResult Index()
         {
-            var recepta = db.recepta.Include(r => r.lekarz).Include(r => r.pacjent);
-            return View(recepta.ToList());
+            ViewBag.data= User.Identity.GetUserId();
+            return View(db.choroba_view.ToList());
         }
 
-        // GET: recepta/Details/5
+        // GET: choroba_view/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            recepta recepta = db.recepta.Find(id);
-            if (recepta == null)
+            choroba_view choroba_view = db.choroba_view.Find(id);
+            if (choroba_view == null)
             {
                 return HttpNotFound();
             }
-            return View(recepta);
+            return View(choroba_view);
         }
 
-        // GET: recepta/Create
+        // GET: choroba_view/Create
         public ActionResult Create()
         {
-            ViewBag.id_lekarz = new SelectList(db.lekarz, "id_lekarz", "nazwisko");
-            ViewBag.id_pacjent = new SelectList(db.pacjent, "id_pacjent", "nazwisko");
             return View();
         }
 
-        // POST: recepta/Create
+        // POST: choroba_view/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_recepta,id_pacjent,id_lekarz,lek_i_dawkowanie,data_wystawienia")] recepta recepta)
+        public ActionResult Create([Bind(Include = "id_uzytkownika,nazwisko,nazwa_choroby,diagnoza,objawy,id_pacjent")] choroba_view choroba_view)
         {
             if (ModelState.IsValid)
             {
-                recepta.data_wystawienia = DateTime.Now;
-                db.recepta.Add(recepta);
+                db.choroba_view.Add(choroba_view);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.id_lekarz = new SelectList(db.lekarz, "id_lekarz", "nazwisko", recepta.id_lekarz);
-            ViewBag.id_pacjent = new SelectList(db.pacjent, "id_pacjent", "nazwisko", recepta.id_pacjent);
-            return View(recepta);
+            return View(choroba_view);
         }
 
-        // GET: recepta/Edit/5
+        // GET: choroba_view/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            recepta recepta = db.recepta.Find(id);
-            if (recepta == null)
+            choroba_view choroba_view = db.choroba_view.Find(id);
+            if (choroba_view == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.id_lekarz = new SelectList(db.lekarz, "id_lekarz", "nazwisko", recepta.id_lekarz);
-            ViewBag.id_pacjent = new SelectList(db.pacjent, "id_pacjent", "nazwisko", recepta.id_pacjent);
-            return View(recepta);
+            return View(choroba_view);
         }
 
-        // POST: recepta/Edit/5
+        // POST: choroba_view/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_recepta,id_pacjent,id_lekarz,lek_i_dawkowanie,data_wystawienia")] recepta recepta)
+        public ActionResult Edit([Bind(Include = "id_uzytkownika,nazwisko,nazwa_choroby,diagnoza,objawy,id_pacjent")] choroba_view choroba_view)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(recepta).State = EntityState.Modified;
+                db.Entry(choroba_view).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.id_lekarz = new SelectList(db.lekarz, "id_lekarz", "nazwisko", recepta.id_lekarz);
-            ViewBag.id_pacjent = new SelectList(db.pacjent, "id_pacjent", "nazwisko", recepta.id_pacjent);
-            return View(recepta);
+            return View(choroba_view);
         }
 
-        // GET: recepta/Delete/5
+        // GET: choroba_view/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            recepta recepta = db.recepta.Find(id);
-            if (recepta == null)
+            choroba_view choroba_view = db.choroba_view.Find(id);
+            if (choroba_view == null)
             {
                 return HttpNotFound();
             }
-            return View(recepta);
+            return View(choroba_view);
         }
 
-        // POST: recepta/Delete/5
+        // POST: choroba_view/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            recepta recepta = db.recepta.Find(id);
-            db.recepta.Remove(recepta);
+            choroba_view choroba_view = db.choroba_view.Find(id);
+            db.choroba_view.Remove(choroba_view);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

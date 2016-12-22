@@ -1,0 +1,58 @@
+﻿@model ePrzychodnia.Models.choroba_view
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>choroba_view</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_uzytkownika)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_uzytkownika)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nazwisko)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nazwisko)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nazwa_choroby)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nazwa_choroby)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.diagnoza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diagnoza)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.objawy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.objawy)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_pacjent }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

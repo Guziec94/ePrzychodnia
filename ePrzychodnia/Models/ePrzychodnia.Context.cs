@@ -38,5 +38,9 @@ namespace ePrzychodnia.Models
         public virtual DbSet<skierowanie> skierowanie { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<wizyta> wizyta { get; set; }
+        public virtual DbSet<choroba_view> choroba_view { get; set; }
+        public virtual DbSet<badania_view> badania_view { get; set; }
+        public virtual DbSet<recepta_view> recepta_view { get; set; }
+        public virtual DbSet<skierowanie_view> skierowanie_view { get; set; }
     }
 }
