@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ePrzychodnia.Models.choroba_view>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id_uzytkownika)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nazwisko)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nazwa_choroby)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.diagnoza)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.objawy)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_uzytkownika)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nazwisko)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nazwa_choroby)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.diagnoza)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.objawy)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_pacjent }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_pacjent }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_pacjent })
+        </td>
+    </tr>
+}
+
+</table>
