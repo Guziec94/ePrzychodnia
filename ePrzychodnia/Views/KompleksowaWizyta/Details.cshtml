@@ -1,0 +1,138 @@
+﻿@model ePrzychodnia.Models.KompleksowaWizyta
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>KompleksowaWizyta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.id_skierowanie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_skierowanie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_recepta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_recepta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_choroba)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_choroba)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_badanie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_badanie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_lekarz)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_lekarz)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id_pacjent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.id_pacjent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_wizyty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_wizyty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_wystawienia_skierowanie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_wystawienia_skierowanie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_badania)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_badania)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_wystawienia_recepta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_wystawienia_recepta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.opis_badania)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.opis_badania)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lek_i_dawkowanie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lek_i_dawkowanie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nazwa_choroby)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nazwa_choroby)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.objawy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.objawy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.diagnoza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diagnoza)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_wizyta }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

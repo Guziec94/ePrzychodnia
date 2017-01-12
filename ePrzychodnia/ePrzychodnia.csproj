@@ -177,6 +177,7 @@
     <Compile Include="Controllers\choroba_viewController.cs" />
     <Compile Include="Controllers\godziny_przyjecController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KompleksowaWizytaController.cs" />
     <Compile Include="Controllers\lekarzController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\pacjentController.cs" />
@@ -232,6 +233,7 @@
       <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\KompleksowaWizyta.cs" />
     <Compile Include="Models\lekarz.cs">
       <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
@@ -281,6 +283,11 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Views\KompleksowaWizyta\Create.cshtml" />
+    <Content Include="Views\KompleksowaWizyta\Delete.cshtml" />
+    <Content Include="Views\KompleksowaWizyta\Details.cshtml" />
+    <Content Include="Views\KompleksowaWizyta\Edit.cshtml" />
+    <Content Include="Views\KompleksowaWizyta\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

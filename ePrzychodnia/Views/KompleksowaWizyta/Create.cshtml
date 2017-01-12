@@ -1,0 +1,175 @@
+﻿@model ePrzychodnia.Models.KompleksowaWizyta
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Dodaj wizytę</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Podaj szczegóły tej wizyty</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_pacjent, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.id_pacjent, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.id_pacjent, "", new { @class = "text-danger" })
+                @*<input type="submit" id="cos" class="btn btn-default" value="Szukaj pacjenta"/>*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.data_wizyty, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.data_wizyty, new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Now.ToString().Substring(0,10)} })
+                @Html.ValidationMessageFor(model => model.data_wizyty, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <hr />
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                Dodatkowe badanie?
+            </div>
+            <div class="col-md-10">
+                @Html.CheckBox("wypelnione_badanie", false)
+                @Html.HiddenFor(m => m.wypelnione_badanie)
+            </div>
+        </div>
+
+        <div class="badanie_skierowanie" hidden>
+            <div class="form-group">
+                @Html.LabelFor(model => model.data_wystawienia_skierowanie, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.data_wystawienia_skierowanie, new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Now.ToString().Substring(0, 10) } })
+                    @Html.ValidationMessageFor(model => model.data_wystawienia_skierowanie, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.data_badania, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.data_badania, new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Now.ToString().Substring(0, 10) } })
+                    @Html.ValidationMessageFor(model => model.data_badania, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.opis_badania, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.opis_badania, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.opis_badania, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        
+        <hr />
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                Recepta?
+            </div>
+            <div class="col-md-10">
+                @Html.CheckBox("wypelnione_recepta", false)
+                @Html.HiddenFor(m => m.wypelnione_recepta)
+            </div>
+        </div>
+
+        <div class="recepta" hidden>
+            <div class="form-group">
+                @Html.LabelFor(model => model.data_wystawienia_recepta, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.data_wystawienia_recepta, new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Now.ToString().Substring(0, 10) } })
+                    @Html.ValidationMessageFor(model => model.data_wystawienia_recepta, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.lek_i_dawkowanie, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.lek_i_dawkowanie, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.lek_i_dawkowanie, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+
+        <hr />
+        <div class="form-group">
+            <div class="control-label col-md-2">
+                Zdiagnozowano chorobę?
+            </div>
+            <div class="col-md-10">
+                @Html.CheckBox("wypelnione_choroba", false)
+                @Html.HiddenFor(m => m.wypelnione_choroba)
+            </div>
+        </div>
+
+        <div class="choroba" hidden>
+            <div class="form-group">
+                @Html.LabelFor(model => model.nazwa_choroby, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.nazwa_choroby, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.nazwa_choroby, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.objawy, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.objawy, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.objawy, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.diagnoza, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.diagnoza, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.diagnoza, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Dodaj" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "index", "wizyta")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript">
+    window.onload= function ()
+    {
+        $("#wypelnione_badanie")[0].onclick = function () { toggle_visible(1) }
+        $("#wypelnione_recepta")[0].onclick = function () { toggle_visible(2) }
+        $("#wypelnione_choroba")[0].onclick = function () { toggle_visible(3) }
+    }
+    function toggle_visible(nr_klasy) {
+        if (nr_klasy == 1) {
+            $(".badanie_skierowanie").toggle($("#wypelnione_badanie")[0].checked);
+        }
+        if (nr_klasy == 2) {
+            $(".recepta").toggle($("#wypelnione_recepta")[0].checked);
+        }
+        if (nr_klasy == 3) {
+            $(".choroba").toggle($("#wypelnione_choroba")[0].checked);
+        }
+    }
+</script>
