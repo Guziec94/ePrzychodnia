@@ -19,7 +19,7 @@ namespace ePrzychodnia.Models
         public int Numer_recepty { get; set; }
         [DisplayName("Data wystawienia")]
         public Nullable<System.DateTime> Data_wystawienia { get; set; }
-        [DisplayName("Lek i dawkowanie")]
+        [DisplayName("Leki i dawkowanie")]
         public string Nazwa_leku_i_dawkowanie { get; set; }
     }
 }

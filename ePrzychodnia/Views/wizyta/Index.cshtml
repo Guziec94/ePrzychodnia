@@ -4,16 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Przeprowadzone wizyty</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.id_lekarz)
-        </th>
+       
         <th>
             @Html.DisplayNameFor(model => model.id_pacjent)
         </th>
@@ -34,12 +29,14 @@
         </th>
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
+@if (User.IsInRole("Lekarz"))
+{
+    foreach (var item in Model)
+    {
+        if (item.id_lekarz == ViewBag.data)
+        {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.id_lekarz)
-        </td>
+       
         <td>
             @Html.DisplayFor(modelItem => item.id_pacjent)
         </td>
@@ -59,11 +56,14 @@
             @Html.DisplayFor(modelItem => item.skierowanie.id_skierowanie)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_wizyta }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_wizyta }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_wizyta })
+
+            @Html.ActionLink("Details", "Details", new { id = item.id_wizyta })
+
         </td>
     </tr>
+        }
+    }
+
 }
 
 </table>
