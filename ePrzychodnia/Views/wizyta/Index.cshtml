@@ -5,7 +5,9 @@
 }
 
 <h2>Przeprowadzone wizyty</h2>
-
+<p>
+    @Html.ActionLink("Dodaj wizytę", "Create", "KompleksowaWizyta")
+</p>
 <table class="table">
     <tr>
        
@@ -55,11 +57,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.skierowanie.id_skierowanie)
         </td>
-        <td>
-
-            @Html.ActionLink("Details", "Details", new { id = item.id_wizyta })
-
-        </td>
+      
     </tr>
         }
     }

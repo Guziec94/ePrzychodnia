@@ -87,6 +87,7 @@ namespace ePrzychodnia.Controllers
                 if (KW.wypelnione_choroba == true)
                 {
                     choroba choroba_dz = new choroba();
+
                     choroba_dz.diagnoza = KW.diagnoza;
                     choroba_dz.nazwa_choroby = KW.nazwa_choroby;
                     choroba_dz.objawy = KW.objawy;
