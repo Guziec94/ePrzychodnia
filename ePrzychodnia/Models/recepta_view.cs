@@ -11,15 +11,12 @@ namespace ePrzychodnia.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
+    
     public partial class recepta_view
     {
         public string id_uzytkownika { get; set; }
-        [DisplayName("Numer recepty")]
         public int Numer_recepty { get; set; }
-        [DisplayName("Data wystawienia")]
         public Nullable<System.DateTime> Data_wystawienia { get; set; }
-        [DisplayName("Leki i dawkowanie")]
         public string Nazwa_leku_i_dawkowanie { get; set; }
     }
 }

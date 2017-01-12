@@ -42,7 +42,5 @@ namespace ePrzychodnia.Models
         public virtual DbSet<badania_view> badania_view { get; set; }
         public virtual DbSet<recepta_view> recepta_view { get; set; }
         public virtual DbSet<skierowanie_view> skierowanie_view { get; set; }
-
-        public System.Data.Entity.DbSet<ePrzychodnia.Models.KompleksowaWizyta> KompleksowaWizytas { get; set; }
     }
 }

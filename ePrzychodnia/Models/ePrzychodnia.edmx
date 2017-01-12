@@ -168,10 +168,12 @@ warning 6002: The table/view 'ePrzychodnia.dbo.choroba_view' does not have a pri
         <EntityType Name="choroba_view">
           <Key>
             <PropertyRef Name="id_pacjent" />
+            <PropertyRef Name="id_choroba" />
           </Key>
           <Property Name="id_pacjent" Type="int" Nullable="false" />
           <Property Name="id_uzytkownika" Type="nvarchar" MaxLength="128" />
           <Property Name="nazwisko" Type="varchar" MaxLength="50" />
+          <Property Name="id_choroba" Type="int" Nullable="false" />
           <Property Name="nazwa_choroby" Type="varchar" MaxLength="50" />
           <Property Name="diagnoza" Type="varchar" MaxLength="250" />
           <Property Name="objawy" Type="varchar" MaxLength="100" />
@@ -415,6 +417,7 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
     [choroba_view].[id_pacjent] AS [id_pacjent], 
     [choroba_view].[id_uzytkownika] AS [id_uzytkownika], 
     [choroba_view].[nazwisko] AS [nazwisko], 
+    [choroba_view].[id_choroba] AS [id_choroba], 
     [choroba_view].[nazwa_choroby] AS [nazwa_choroby], 
     [choroba_view].[diagnoza] AS [diagnoza], 
     [choroba_view].[objawy] AS [objawy]
@@ -909,6 +912,7 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
         <EntityType Name="choroba_view">
           <Key>
             <PropertyRef Name="id_pacjent" />
+            <PropertyRef Name="id_choroba" />
           </Key>
           <Property Name="id_uzytkownika" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -916,6 +920,7 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
           <Property Name="diagnoza" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="objawy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="id_pacjent" Type="Int32" Nullable="false" />
+          <Property Name="id_choroba" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="badania_view">
           <Key>
@@ -1111,6 +1116,7 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
           <EntitySetMapping Name="choroba_view">
             <EntityTypeMapping TypeName="ePrzychodniaModel.choroba_view">
               <MappingFragment StoreEntitySet="choroba_view">
+                <ScalarProperty Name="id_choroba" ColumnName="id_choroba" />
                 <ScalarProperty Name="id_pacjent" ColumnName="id_pacjent" />
                 <ScalarProperty Name="objawy" ColumnName="objawy" />
                 <ScalarProperty Name="diagnoza" ColumnName="diagnoza" />

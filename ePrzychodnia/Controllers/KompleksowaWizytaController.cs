@@ -18,22 +18,13 @@ namespace ePrzychodnia.Controllers
         // GET: KompleksowaWizyta
         public ActionResult Index()
         {
-            return View(db.KompleksowaWizytas.ToList());
+            return View();
         }
 
         // GET: KompleksowaWizyta/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            KompleksowaWizyta kompleksowaWizyta = db.KompleksowaWizytas.Find(id);
-            if (kompleksowaWizyta == null)
-            {
-                return HttpNotFound();
-            }
-            return View(kompleksowaWizyta);
+            return View();
         }
 
         // GET: KompleksowaWizyta/Create
@@ -63,7 +54,7 @@ namespace ePrzychodnia.Controllers
                 lekarz zalogowany_lekarz = db.lekarz.FirstOrDefault(i => i.id_uzytkownika == cos);
                 wizyta_dz.id_lekarz = KW.id_lekarz = zalogowany_lekarz.id_lekarz;
 
-                if (KW.wypelnione_badanie==true)
+                if (KW.wypelnione_badanie == true)
                 {
                     badanie badanie_dz = new badanie();
                     badanie_dz.id_lekarz = KW.id_lekarz;
@@ -105,7 +96,7 @@ namespace ePrzychodnia.Controllers
                     db.recepta.Add(recepta_dz);
                     db.SaveChanges();
                     KW.id_recepta = wizyta_dz.id_recepta = db.recepta.OrderByDescending(x => x.id_recepta).Take(1).Single().id_recepta;
-                    
+
                 }
                 db.wizyta.Add(wizyta_dz);
                 db.SaveChanges();
@@ -118,16 +109,7 @@ namespace ePrzychodnia.Controllers
         // GET: KompleksowaWizyta/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            KompleksowaWizyta kompleksowaWizyta = db.KompleksowaWizytas.Find(id);
-            if (kompleksowaWizyta == null)
-            {
-                return HttpNotFound();
-            }
-            return View(kompleksowaWizyta);
+            return View();
         }
 
         // POST: KompleksowaWizyta/Edit/5
@@ -149,16 +131,7 @@ namespace ePrzychodnia.Controllers
         // GET: KompleksowaWizyta/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            KompleksowaWizyta kompleksowaWizyta = db.KompleksowaWizytas.Find(id);
-            if (kompleksowaWizyta == null)
-            {
-                return HttpNotFound();
-            }
-            return View(kompleksowaWizyta);
+            return View();
         }
 
         // POST: KompleksowaWizyta/Delete/5
@@ -166,9 +139,6 @@ namespace ePrzychodnia.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            KompleksowaWizyta kompleksowaWizyta = db.KompleksowaWizytas.Find(id);
-            db.KompleksowaWizytas.Remove(kompleksowaWizyta);
-            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

@@ -11,15 +11,12 @@ namespace ePrzychodnia.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
+    
     public partial class skierowanie_view
     {
         public string id_uzytkownika { get; set; }
-        [DisplayName("Numer skierowania")]
         public int Numer_skierowania { get; set; }
-        [DisplayName("Nazwisko lekarza")]
         public string C_Nazwisko_lekarza { get; set; }
-        [DisplayName("Data wystawienia")]
         public Nullable<System.DateTime> Data_wystawienia { get; set; }
     }
 }

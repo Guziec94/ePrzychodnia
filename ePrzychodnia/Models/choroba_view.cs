@@ -11,17 +11,15 @@ namespace ePrzychodnia.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
+    
     public partial class choroba_view
     {
         public string id_uzytkownika { get; set; }
         public string nazwisko { get; set; }
-        [DisplayName("Nazwa choroby")]
         public string nazwa_choroby { get; set; }
-        [DisplayName("Diagnoza")]
         public string diagnoza { get; set; }
-        [DisplayName("Objawy")]
         public string objawy { get; set; }
         public int id_pacjent { get; set; }
+        public int id_choroba { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace ePrzychodnia.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
+    
     public partial class choroba
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,11 +21,8 @@ namespace ePrzychodnia.Models
         }
     
         public int id_choroba { get; set; }
-        [DisplayName("Nazwa Choroby")]
         public string nazwa_choroby { get; set; }
-        [DisplayName("Objawy")]
         public string objawy { get; set; }
-        [DisplayName("Diagnoza")]
         public string diagnoza { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
