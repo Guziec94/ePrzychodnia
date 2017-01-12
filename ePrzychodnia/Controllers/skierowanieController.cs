@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ePrzychodnia.Models;
+using Microsoft.AspNet.Identity;
 
 namespace ePrzychodnia.Controllers
 {
@@ -17,6 +18,10 @@ namespace ePrzychodnia.Controllers
         // GET: skierowanie
         public ActionResult Index()
         {
+            string userID = User.Identity.GetUserId();
+            lekarz zalogowany_lekarz = db.lekarz.FirstOrDefault(i => i.id_uzytkownika == userID);
+            var id_lekarz = zalogowany_lekarz.id_lekarz;
+            ViewBag.Data = id_lekarz;
             return View(db.skierowanie.ToList());
         }
 

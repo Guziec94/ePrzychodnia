@@ -4,13 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Ostatnie badania</h2>
 
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.id_uzytkownika)
-        </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.Nazwisko_lekarza)
         </th>
@@ -29,9 +27,7 @@
         if (item.id_uzytkownika == ViewBag.data)
         {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.id_uzytkownika)
-            </td>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.Nazwisko_lekarza)
             </td>

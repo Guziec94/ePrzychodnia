@@ -28,6 +28,7 @@
                         <li>@Html.ActionLink("Recepty", "index", "recepta_view")</li>
                         <li>@Html.ActionLink("Badania", "index", "badania_view")</li>
                         <li>@Html.ActionLink("Skierowania", "index", "skierowanie_view")</li>
+
                     }
                     @if (User.IsInRole("Lekarz"))
                     {
@@ -41,8 +42,9 @@
                     {
                         <li>@Html.ActionLink("Lekarze", "index", "lekarz")</li>
                         <li>@Html.ActionLink("Pacjenci", "index", "pacjent")</li>
+                        <li>@Html.ActionLink("Godziny przyjęć", "index", "godziny_przyjec")</li>
                     }
-                    <li>@Html.ActionLink("O firmie", "About", "Home")</li>
+                    <li>@Html.ActionLink("O projekcie", "About", "Home")</li>
                     <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")

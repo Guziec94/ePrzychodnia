@@ -15,14 +15,14 @@ namespace ePrzychodnia.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Informacje o naszym projekcie.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Strona kontaktowa.";
 
             return View();
         }
