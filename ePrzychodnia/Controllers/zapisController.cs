@@ -40,7 +40,9 @@ namespace ePrzychodnia.Controllers
         public ActionResult Create()
         {
             ViewBag.id_lekarza = new SelectList(db.lekarz, "id_lekarz", "nazwisko");
-            ViewBag.id_pacjenta = new SelectList(db.pacjent, "id_pacjent", "nazwisko");
+            var dzisiaj = DateTime.Now;
+            dzisiaj = dzisiaj.AddDays(1);
+            ViewBag.data = dzisiaj.ToString("yyyy-MM-dd");
             return View();
         }
 
@@ -57,14 +59,23 @@ namespace ePrzychodnia.Controllers
             {
                 zapis.id_pacjenta = zalogowany_pacjent.id_pacjent;
             }
-            int ilosc_w_kolejce = 0;
-            var temp = db.zapis.Include(z => z.lekarz).Include(z => z.pacjent).ToList();
-            zapis.godzina = new TimeSpan(0, 480+ ilosc_w_kolejce, 0);
+            int ilosc_w_kolejce;
+            do
+            {
+                List<zapis> temp = db.zapis.ToList();
+                ilosc_w_kolejce = temp.FindAll(z => z.data == zapis.data && z.id_lekarza == zapis.id_lekarza).Count;
+                if (ilosc_w_kolejce == 24)
+                {
+                    zapis.data = ((DateTime)zapis.data).AddDays(1);
+                    ilosc_w_kolejce = -1;
+                }
+            } while (ilosc_w_kolejce == -1);
+            zapis.godzina = new TimeSpan(0, 480 + 20 * (ilosc_w_kolejce % 24), 0);
             if (ModelState.IsValid)
             {
-                /*db.zapis.Add(zapis);
-                db.SaveChanges();*/
-                return RedirectToAction("Index");
+                db.zapis.Add(zapis);
+                db.SaveChanges();
+                return Content("<script language='javascript' type='text/javascript'>alert('Zapisałeś/aś się do lekarza na najbliższy termin tj.: "+((DateTime)zapis.data).ToString("yyyy-MM-dd") + " "+zapis.godzina+"');window.location.href =\"http://localhost:1768/home/index\";</script>");
             }
 
             ViewBag.id_lekarza = new SelectList(db.lekarz, "id_lekarz", "nazwisko", zapis.id_lekarza);
