@@ -10,112 +10,116 @@ using ePrzychodnia.Models;
 
 namespace ePrzychodnia.Controllers
 {
-    public class godziny_przyjecController : Controller
+    public class zapisController : Controller
     {
         private ePrzychodniaEntities db = new ePrzychodniaEntities();
 
-        // GET: godziny_przyjec
+        // GET: zapis
         public ActionResult Index()
         {
-            var godziny_przyjec = db.godziny_przyjec.Include(g => g.lekarz);
-            return View(godziny_przyjec.ToList());
+            var zapis = db.zapis.Include(z => z.lekarz).Include(z => z.pacjent);
+            return View(zapis.ToList());
         }
 
-        // GET: godziny_przyjec/Details/5
+        // GET: zapis/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            godziny_przyjec godziny_przyjec = db.godziny_przyjec.Find(id);
-            if (godziny_przyjec == null)
+            zapis zapis = db.zapis.Find(id);
+            if (zapis == null)
             {
                 return HttpNotFound();
             }
-            return View(godziny_przyjec);
+            return View(zapis);
         }
 
-        // GET: godziny_przyjec/Create
+        // GET: zapis/Create
         public ActionResult Create()
         {
-            ViewBag.id_pracownik = new SelectList(db.lekarz, "id_lekarz", "nazwisko");
+            ViewBag.id_lekarza = new SelectList(db.lekarz, "id_lekarz", "nazwisko");
+            ViewBag.id_pacjenta = new SelectList(db.pacjent, "id_pacjent", "nazwisko");
             return View();
         }
 
-        // POST: godziny_przyjec/Create
+        // POST: zapis/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_godziny_przyjec,id_pracownik,dzien_tygodnia,godz_od,godz_do")] godziny_przyjec godziny_przyjec)
+        public ActionResult Create([Bind(Include = "id_zapisu,id_pacjenta,id_lekarza,data,godzina")] zapis zapis)
         {
             if (ModelState.IsValid)
             {
-                db.godziny_przyjec.Add(godziny_przyjec);
+                db.zapis.Add(zapis);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.id_pracownik = new SelectList(db.lekarz, "id_lekarz", "nazwisko", godziny_przyjec.id_pracownik);
-            return View(godziny_przyjec);
+            ViewBag.id_lekarza = new SelectList(db.lekarz, "id_lekarz", "nazwisko", zapis.id_lekarza);
+            ViewBag.id_pacjenta = new SelectList(db.pacjent, "id_pacjent", "nazwisko", zapis.id_pacjenta);
+            return View(zapis);
         }
 
-        // GET: godziny_przyjec/Edit/5
+        // GET: zapis/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            godziny_przyjec godziny_przyjec = db.godziny_przyjec.Find(id);
-            if (godziny_przyjec == null)
+            zapis zapis = db.zapis.Find(id);
+            if (zapis == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.id_pracownik = new SelectList(db.lekarz, "id_lekarz", "nazwisko", godziny_przyjec.id_pracownik);
-            return View(godziny_przyjec);
+            ViewBag.id_lekarza = new SelectList(db.lekarz, "id_lekarz", "nazwisko", zapis.id_lekarza);
+            ViewBag.id_pacjenta = new SelectList(db.pacjent, "id_pacjent", "nazwisko", zapis.id_pacjenta);
+            return View(zapis);
         }
 
-        // POST: godziny_przyjec/Edit/5
+        // POST: zapis/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_godziny_przyjec,id_pracownik,dzien_tygodnia,godz_od,godz_do")] godziny_przyjec godziny_przyjec)
+        public ActionResult Edit([Bind(Include = "id_zapisu,id_pacjenta,id_lekarza,data,godzina")] zapis zapis)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(godziny_przyjec).State = EntityState.Modified;
+                db.Entry(zapis).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.id_pracownik = new SelectList(db.lekarz, "id_lekarz", "nazwisko", godziny_przyjec.id_pracownik);
-            return View(godziny_przyjec);
+            ViewBag.id_lekarza = new SelectList(db.lekarz, "id_lekarz", "nazwisko", zapis.id_lekarza);
+            ViewBag.id_pacjenta = new SelectList(db.pacjent, "id_pacjent", "nazwisko", zapis.id_pacjenta);
+            return View(zapis);
         }
 
-        // GET: godziny_przyjec/Delete/5
+        // GET: zapis/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            godziny_przyjec godziny_przyjec = db.godziny_przyjec.Find(id);
-            if (godziny_przyjec == null)
+            zapis zapis = db.zapis.Find(id);
+            if (zapis == null)
             {
                 return HttpNotFound();
             }
-            return View(godziny_przyjec);
+            return View(zapis);
         }
 
-        // POST: godziny_przyjec/Delete/5
+        // POST: zapis/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            godziny_przyjec godziny_przyjec = db.godziny_przyjec.Find(id);
-            db.godziny_przyjec.Remove(godziny_przyjec);
+            zapis zapis = db.zapis.Find(id);
+            db.zapis.Remove(zapis);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

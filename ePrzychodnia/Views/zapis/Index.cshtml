@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ePrzychodnia.Models.zapis>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.data)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.godzina)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lekarz.nazwisko)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pacjent.nazwisko)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.data)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.godzina)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lekarz.nazwisko)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pacjent.nazwisko)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_zapisu }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_zapisu }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_zapisu })
+        </td>
+    </tr>
+}
+
+</table>

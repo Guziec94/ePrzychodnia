@@ -11,7 +11,6 @@
         <EntityTypeShape EntityType="ePrzychodniaModel.AspNetUsers" Width="1.5" PointX="13" PointY="11.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ePrzychodniaModel.badanie" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ePrzychodniaModel.choroba" Width="1.5" PointX="8.25" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="ePrzychodniaModel.godziny_przyjec" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="ePrzychodniaModel.lekarz" Width="1.5" PointX="2.375" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="ePrzychodniaModel.pacjent" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ePrzychodniaModel.recepta" Width="1.5" PointX="8.25" PointY="5.25" IsExpanded="true" />
@@ -24,7 +23,6 @@
         <AssociationConnector Association="ePrzychodniaModel.FK_badanie_pacjent" ManuallyRouted="false" />
         <AssociationConnector Association="ePrzychodniaModel.FK_wizyta_badanie" ManuallyRouted="false" />
         <AssociationConnector Association="ePrzychodniaModel.FK_wizyta_choroba" ManuallyRouted="false" />
-        <AssociationConnector Association="ePrzychodniaModel.FK_godziny_przyjec_pracownik" ManuallyRouted="false" />
         <AssociationConnector Association="ePrzychodniaModel.FK_recepta_pracownik" ManuallyRouted="false" />
         <AssociationConnector Association="ePrzychodniaModel.FK_recepta_pacjent" ManuallyRouted="false" />
         <AssociationConnector Association="ePrzychodniaModel.FK_wizyta_recepta" ManuallyRouted="false" />
@@ -36,6 +34,9 @@
         <EntityTypeShape EntityType="ePrzychodniaModel.badania_view" Width="1.5" PointX="12.625" PointY="0.625" />
         <EntityTypeShape EntityType="ePrzychodniaModel.recepta_view" Width="1.5" PointX="14.375" PointY="0.625" />
         <EntityTypeShape EntityType="ePrzychodniaModel.skierowanie_view" Width="1.5" PointX="16.125" PointY="0.625" />
+        <EntityTypeShape EntityType="ePrzychodniaModel.zapis" Width="1.5" PointX="5.75" PointY="0.5" />
+        <AssociationConnector Association="ePrzychodniaModel.FK_zapis_lekarz1" />
+        <AssociationConnector Association="ePrzychodniaModel.FK_zapis_pacjent1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

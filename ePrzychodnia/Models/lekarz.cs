@@ -18,8 +18,8 @@ namespace ePrzychodnia.Models
         public lekarz()
         {
             this.badanie = new HashSet<badanie>();
-            this.godziny_przyjec = new HashSet<godziny_przyjec>();
             this.recepta = new HashSet<recepta>();
+            this.zapis = new HashSet<zapis>();
         }
     
         public int id_lekarz { get; set; }
@@ -36,9 +36,9 @@ namespace ePrzychodnia.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<badanie> badanie { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<godziny_przyjec> godziny_przyjec { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<recepta> recepta { get; set; }
         public virtual AspNetUsers AspNetUsers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<zapis> zapis { get; set; }
     }
 }

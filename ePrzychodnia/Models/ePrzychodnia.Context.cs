@@ -31,7 +31,6 @@ namespace ePrzychodnia.Models
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<badanie> badanie { get; set; }
         public virtual DbSet<choroba> choroba { get; set; }
-        public virtual DbSet<godziny_przyjec> godziny_przyjec { get; set; }
         public virtual DbSet<lekarz> lekarz { get; set; }
         public virtual DbSet<pacjent> pacjent { get; set; }
         public virtual DbSet<recepta> recepta { get; set; }
@@ -42,5 +41,6 @@ namespace ePrzychodnia.Models
         public virtual DbSet<badania_view> badania_view { get; set; }
         public virtual DbSet<recepta_view> recepta_view { get; set; }
         public virtual DbSet<skierowanie_view> skierowanie_view { get; set; }
+        public virtual DbSet<zapis> zapis { get; set; }
     }
 }

@@ -1,0 +1,50 @@
+﻿@model ePrzychodnia.Models.zapis
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>zapis</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.godzina)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.godzina)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lekarz.nazwisko)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lekarz.nazwisko)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pacjent.nazwisko)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pacjent.nazwisko)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_zapisu }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

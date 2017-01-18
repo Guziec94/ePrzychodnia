@@ -12,14 +12,15 @@ namespace ePrzychodnia.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class godziny_przyjec
+    public partial class zapis
     {
-        public int id_godziny_przyjec { get; set; }
-        public Nullable<int> id_pracownik { get; set; }
-        public string dzien_tygodnia { get; set; }
-        public Nullable<System.DateTime> godz_od { get; set; }
-        public Nullable<System.DateTime> godz_do { get; set; }
+        public int id_zapisu { get; set; }
+        public int id_pacjenta { get; set; }
+        public Nullable<int> id_lekarza { get; set; }
+        public Nullable<System.DateTime> data { get; set; }
+        public Nullable<System.TimeSpan> godzina { get; set; }
     
         public virtual lekarz lekarz { get; set; }
+        public virtual pacjent pacjent { get; set; }
     }
 }

@@ -175,7 +175,6 @@
     <Compile Include="Controllers\badanieController.cs" />
     <Compile Include="Controllers\chorobaController.cs" />
     <Compile Include="Controllers\choroba_viewController.cs" />
-    <Compile Include="Controllers\godziny_przyjecController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KompleksowaWizytaController.cs" />
     <Compile Include="Controllers\lekarzController.cs" />
@@ -186,6 +185,7 @@
     <Compile Include="Controllers\skierowanieController.cs" />
     <Compile Include="Controllers\skierowanie_viewController.cs" />
     <Compile Include="Controllers\wizytaController.cs" />
+    <Compile Include="Controllers\zapisController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -229,9 +229,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ePrzychodnia.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\godziny_przyjec.cs">
-      <DependentUpon>ePrzychodnia.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\KompleksowaWizyta.cs" />
     <Compile Include="Models\lekarz.cs">
@@ -257,6 +254,9 @@
       <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\wizyta.cs">
+      <DependentUpon>ePrzychodnia.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\zapis.cs">
       <DependentUpon>ePrzychodnia.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -289,6 +289,11 @@
     <Content Include="Views\KompleksowaWizyta\Details.cshtml" />
     <Content Include="Views\KompleksowaWizyta\Edit.cshtml" />
     <Content Include="Views\KompleksowaWizyta\Index.cshtml" />
+    <Content Include="Views\zapis\Create.cshtml" />
+    <Content Include="Views\zapis\Delete.cshtml" />
+    <Content Include="Views\zapis\Details.cshtml" />
+    <Content Include="Views\zapis\Edit.cshtml" />
+    <Content Include="Views\zapis\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -371,11 +376,6 @@
     <Content Include="Views\choroba\Details.cshtml" />
     <Content Include="Views\choroba\Edit.cshtml" />
     <Content Include="Views\choroba\Index.cshtml" />
-    <Content Include="Views\godziny_przyjec\Create.cshtml" />
-    <Content Include="Views\godziny_przyjec\Delete.cshtml" />
-    <Content Include="Views\godziny_przyjec\Details.cshtml" />
-    <Content Include="Views\godziny_przyjec\Edit.cshtml" />
-    <Content Include="Views\godziny_przyjec\Index.cshtml" />
     <Content Include="Views\recepta\Create.cshtml" />
     <Content Include="Views\recepta\Delete.cshtml" />
     <Content Include="Views\recepta\Details.cshtml" />

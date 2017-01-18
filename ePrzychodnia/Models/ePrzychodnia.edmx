@@ -75,16 +75,6 @@
           <Property Name="objawy" Type="varchar" MaxLength="100" />
           <Property Name="diagnoza" Type="varchar" MaxLength="250" />
         </EntityType>
-        <EntityType Name="godziny_przyjec">
-          <Key>
-            <PropertyRef Name="id_godziny_przyjec" />
-          </Key>
-          <Property Name="id_godziny_przyjec" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_pracownik" Type="int" />
-          <Property Name="dzien_tygodnia" Type="varchar" MaxLength="50" />
-          <Property Name="godz_od" Type="datetime" />
-          <Property Name="godz_do" Type="datetime" />
-        </EntityType>
         <EntityType Name="lekarz">
           <Key>
             <PropertyRef Name="id_lekarz" />
@@ -150,6 +140,16 @@
           <Property Name="id_lekarz" Type="int" />
           <Property Name="id_pacjent" Type="int" />
           <Property Name="data_wizyty" Type="datetime" />
+        </EntityType>
+        <EntityType Name="zapis">
+          <Key>
+            <PropertyRef Name="id_zapisu" />
+          </Key>
+          <Property Name="id_zapisu" Type="int" Nullable="false" />
+          <Property Name="id_pacjenta" Type="int" Nullable="false" />
+          <Property Name="id_lekarza" Type="int" />
+          <Property Name="data" Type="date" />
+          <Property Name="godzina" Type="time" Precision="7" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ePrzychodnia.dbo.badania_view' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -280,18 +280,6 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_godziny_przyjec_pracownik">
-          <End Role="lekarz" Type="Self.lekarz" Multiplicity="0..1" />
-          <End Role="godziny_przyjec" Type="Self.godziny_przyjec" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="lekarz">
-              <PropertyRef Name="id_lekarz" />
-            </Principal>
-            <Dependent Role="godziny_przyjec">
-              <PropertyRef Name="id_pracownik" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_lekarz_AspNetUsers">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="lekarz" Type="Self.lekarz" Multiplicity="*" />
@@ -388,6 +376,30 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_zapis_lekarz1">
+          <End Role="lekarz" Type="Self.lekarz" Multiplicity="0..1" />
+          <End Role="zapis" Type="Self.zapis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lekarz">
+              <PropertyRef Name="id_lekarz" />
+            </Principal>
+            <Dependent Role="zapis">
+              <PropertyRef Name="id_lekarza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_zapis_pacjent1">
+          <End Role="pacjent" Type="Self.pacjent" Multiplicity="1" />
+          <End Role="zapis" Type="Self.zapis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pacjent">
+              <PropertyRef Name="id_pacjent" />
+            </Principal>
+            <Dependent Role="zapis">
+              <PropertyRef Name="id_pacjenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ePrzychodniaModelStoreContainer">
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -396,13 +408,13 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="badanie" EntityType="Self.badanie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="choroba" EntityType="Self.choroba" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="godziny_przyjec" EntityType="Self.godziny_przyjec" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="lekarz" EntityType="Self.lekarz" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="pacjent" EntityType="Self.pacjent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="recepta" EntityType="Self.recepta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="skierowanie" EntityType="Self.skierowanie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="wizyta" EntityType="Self.wizyta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="zapis" EntityType="Self.zapis" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="badania_view" EntityType="Self.badania_view" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [badania_view].[id_uzytkownika] AS [id_uzytkownika], 
@@ -463,10 +475,6 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
-          <AssociationSet Name="FK_godziny_przyjec_pracownik" Association="Self.FK_godziny_przyjec_pracownik">
-            <End Role="lekarz" EntitySet="lekarz" />
-            <End Role="godziny_przyjec" EntitySet="godziny_przyjec" />
-          </AssociationSet>
           <AssociationSet Name="FK_lekarz_AspNetUsers" Association="Self.FK_lekarz_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="lekarz" EntitySet="lekarz" />
@@ -498,6 +506,14 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
           <AssociationSet Name="FK_wizyta_skierowanie" Association="Self.FK_wizyta_skierowanie">
             <End Role="skierowanie" EntitySet="skierowanie" />
             <End Role="wizyta" EntitySet="wizyta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_zapis_lekarz1" Association="Self.FK_zapis_lekarz1">
+            <End Role="lekarz" EntitySet="lekarz" />
+            <End Role="zapis" EntitySet="zapis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_zapis_pacjent1" Association="Self.FK_zapis_pacjent1">
+            <End Role="pacjent" EntitySet="pacjent" />
+            <End Role="zapis" EntitySet="zapis" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -578,17 +594,6 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
           <Property Name="diagnoza" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="wizyta" Relationship="Self.FK_wizyta_choroba" FromRole="choroba" ToRole="wizyta" />
         </EntityType>
-        <EntityType Name="godziny_przyjec">
-          <Key>
-            <PropertyRef Name="id_godziny_przyjec" />
-          </Key>
-          <Property Name="id_godziny_przyjec" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_pracownik" Type="Int32" />
-          <Property Name="dzien_tygodnia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="godz_od" Type="DateTime" Precision="3" />
-          <Property Name="godz_do" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="lekarz" Relationship="Self.FK_godziny_przyjec_pracownik" FromRole="godziny_przyjec" ToRole="lekarz" />
-        </EntityType>
         <EntityType Name="lekarz">
           <Key>
             <PropertyRef Name="id_lekarz" />
@@ -599,10 +604,10 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
           <Property Name="pesel" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="telefon" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="badanie" Relationship="Self.FK_badanie_lekarz" FromRole="lekarz" ToRole="badanie" />
-          <NavigationProperty Name="godziny_przyjec" Relationship="Self.FK_godziny_przyjec_pracownik" FromRole="lekarz" ToRole="godziny_przyjec" />
           <NavigationProperty Name="recepta" Relationship="Self.FK_recepta_pracownik" FromRole="lekarz" ToRole="recepta" />
           <Property Name="id_uzytkownika" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUsers" Relationship="ePrzychodniaModel.FK_lekarz_AspNetUsers" FromRole="lekarz" ToRole="AspNetUsers" />
+          <NavigationProperty Name="zapis" Relationship="ePrzychodniaModel.FK_zapis_lekarz1" FromRole="lekarz" ToRole="zapis" />
         </EntityType>
         <EntityType Name="pacjent">
           <Key>
@@ -618,6 +623,7 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
           <NavigationProperty Name="recepta" Relationship="Self.FK_recepta_pacjent" FromRole="pacjent" ToRole="recepta" />
           <Property Name="id_uzytkownika" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUsers" Relationship="ePrzychodniaModel.FK_pacjent_AspNetUsers" FromRole="pacjent" ToRole="AspNetUsers" />
+          <NavigationProperty Name="zapis" Relationship="ePrzychodniaModel.FK_zapis_pacjent1" FromRole="pacjent" ToRole="zapis" />
         </EntityType>
         <EntityType Name="recepta">
           <Key>
@@ -746,18 +752,6 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_godziny_przyjec_pracownik">
-          <End Role="lekarz" Type="Self.lekarz" Multiplicity="0..1" />
-          <End Role="godziny_przyjec" Type="Self.godziny_przyjec" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="lekarz">
-              <PropertyRef Name="id_lekarz" />
-            </Principal>
-            <Dependent Role="godziny_przyjec">
-              <PropertyRef Name="id_pracownik" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_recepta_pracownik">
           <End Role="lekarz" Type="Self.lekarz" Multiplicity="0..1" />
           <End Role="recepta" Type="Self.recepta" Multiplicity="*" />
@@ -817,7 +811,6 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
           <EntitySet Name="badanie" EntityType="Self.badanie" />
           <EntitySet Name="choroba" EntityType="Self.choroba" />
-          <EntitySet Name="godziny_przyjec" EntityType="Self.godziny_przyjec" />
           <EntitySet Name="lekarz" EntityType="Self.lekarz" />
           <EntitySet Name="pacjent" EntityType="Self.pacjent" />
           <EntitySet Name="recepta" EntityType="Self.recepta" />
@@ -847,10 +840,6 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
           <AssociationSet Name="FK_wizyta_choroba" Association="Self.FK_wizyta_choroba">
             <End Role="choroba" EntitySet="choroba" />
             <End Role="wizyta" EntitySet="wizyta" />
-          </AssociationSet>
-          <AssociationSet Name="FK_godziny_przyjec_pracownik" Association="Self.FK_godziny_przyjec_pracownik">
-            <End Role="lekarz" EntitySet="lekarz" />
-            <End Role="godziny_przyjec" EntitySet="godziny_przyjec" />
           </AssociationSet>
           <AssociationSet Name="FK_recepta_pracownik" Association="Self.FK_recepta_pracownik">
             <End Role="lekarz" EntitySet="lekarz" />
@@ -884,6 +873,15 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
           <EntitySet Name="badania_view" EntityType="ePrzychodniaModel.badania_view" />
           <EntitySet Name="recepta_view" EntityType="ePrzychodniaModel.recepta_view" />
           <EntitySet Name="skierowanie_view" EntityType="ePrzychodniaModel.skierowanie_view" />
+          <EntitySet Name="zapis" EntityType="ePrzychodniaModel.zapis" />
+          <AssociationSet Name="FK_zapis_lekarz1" Association="ePrzychodniaModel.FK_zapis_lekarz1">
+            <End Role="lekarz" EntitySet="lekarz" />
+            <End Role="zapis" EntitySet="zapis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_zapis_pacjent1" Association="ePrzychodniaModel.FK_zapis_pacjent1">
+            <End Role="pacjent" EntitySet="pacjent" />
+            <End Role="zapis" EntitySet="zapis" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_lekarz_AspNetUsers">
           <End Type="ePrzychodniaModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
@@ -950,6 +948,42 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
           <Property Name="C_Nazwisko_lekarza" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Data_wystawienia" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="zapis">
+          <Key>
+            <PropertyRef Name="id_zapisu" />
+          </Key>
+          <Property Name="id_zapisu" Type="Int32" Nullable="false" />
+          <Property Name="id_pacjenta" Type="Int32" Nullable="false" />
+          <Property Name="id_lekarza" Type="Int32" />
+          <Property Name="data" Type="DateTime" Precision="0" />
+          <Property Name="godzina" Type="Time" Precision="7" />
+          <NavigationProperty Name="lekarz" Relationship="ePrzychodniaModel.FK_zapis_lekarz1" FromRole="zapis" ToRole="lekarz" />
+          <NavigationProperty Name="pacjent" Relationship="ePrzychodniaModel.FK_zapis_pacjent1" FromRole="zapis" ToRole="pacjent" />
+        </EntityType>
+        <Association Name="FK_zapis_lekarz1">
+          <End Type="ePrzychodniaModel.lekarz" Role="lekarz" Multiplicity="0..1" />
+          <End Type="ePrzychodniaModel.zapis" Role="zapis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lekarz">
+              <PropertyRef Name="id_lekarz" />
+            </Principal>
+            <Dependent Role="zapis">
+              <PropertyRef Name="id_lekarza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_zapis_pacjent1">
+          <End Type="ePrzychodniaModel.pacjent" Role="pacjent" Multiplicity="1" />
+          <End Type="ePrzychodniaModel.zapis" Role="zapis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pacjent">
+              <PropertyRef Name="id_pacjent" />
+            </Principal>
+            <Dependent Role="zapis">
+              <PropertyRef Name="id_pacjenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1019,17 +1053,6 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
                 <ScalarProperty Name="nazwa_choroby" ColumnName="nazwa_choroby" />
                 <ScalarProperty Name="objawy" ColumnName="objawy" />
                 <ScalarProperty Name="diagnoza" ColumnName="diagnoza" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="godziny_przyjec">
-            <EntityTypeMapping TypeName="ePrzychodniaModel.godziny_przyjec">
-              <MappingFragment StoreEntitySet="godziny_przyjec">
-                <ScalarProperty Name="id_godziny_przyjec" ColumnName="id_godziny_przyjec" />
-                <ScalarProperty Name="id_pracownik" ColumnName="id_pracownik" />
-                <ScalarProperty Name="dzien_tygodnia" ColumnName="dzien_tygodnia" />
-                <ScalarProperty Name="godz_od" ColumnName="godz_od" />
-                <ScalarProperty Name="godz_do" ColumnName="godz_do" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1154,6 +1177,17 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
                 <ScalarProperty Name="C_Nazwisko_lekarza" ColumnName=" Nazwisko lekarza" />
                 <ScalarProperty Name="Numer_skierowania" ColumnName="Numer skierowania" />
                 <ScalarProperty Name="id_uzytkownika" ColumnName="id_uzytkownika" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zapis">
+            <EntityTypeMapping TypeName="ePrzychodniaModel.zapis">
+              <MappingFragment StoreEntitySet="zapis">
+                <ScalarProperty Name="godzina" ColumnName="godzina" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="id_lekarza" ColumnName="id_lekarza" />
+                <ScalarProperty Name="id_pacjenta" ColumnName="id_pacjenta" />
+                <ScalarProperty Name="id_zapisu" ColumnName="id_zapisu" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
