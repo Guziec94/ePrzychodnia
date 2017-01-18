@@ -15,10 +15,10 @@ namespace ePrzychodnia.Models
     public partial class zapis
     {
         public int id_zapisu { get; set; }
-        public int id_pacjenta { get; set; }
+        public Nullable<int> id_pacjenta { get; set; }
         public Nullable<int> id_lekarza { get; set; }
-        public Nullable<System.DateTime> data { get; set; }
-        public Nullable<System.TimeSpan> godzina { get; set; }
+        public DateTime? data { get; set; }
+        public TimeSpan? godzina { get; set; }
     
         public virtual lekarz lekarz { get; set; }
         public virtual pacjent pacjent { get; set; }

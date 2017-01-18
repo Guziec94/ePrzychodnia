@@ -34,10 +34,10 @@
         <EntityTypeShape EntityType="ePrzychodniaModel.badania_view" Width="1.5" PointX="12.625" PointY="0.625" />
         <EntityTypeShape EntityType="ePrzychodniaModel.recepta_view" Width="1.5" PointX="14.375" PointY="0.625" />
         <EntityTypeShape EntityType="ePrzychodniaModel.skierowanie_view" Width="1.5" PointX="16.125" PointY="0.625" />
-        <EntityTypeShape EntityType="ePrzychodniaModel.zapis" Width="1.5" PointX="5.75" PointY="0.5" />
+        <EntityTypeShape EntityType="ePrzychodniaModel.zapis" Width="1.5" PointX="5.25" PointY="2.375" />
         <AssociationConnector Association="ePrzychodniaModel.FK_zapis_lekarz1" />
         <AssociationConnector Association="ePrzychodniaModel.FK_zapis_pacjent1" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -51,10 +51,19 @@ namespace ePrzychodnia.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id_zapisu,id_pacjenta,id_lekarza,data,godzina")] zapis zapis)
         {
+            string email_zalogowanego_pacjenta = User.Identity.Name;//email zalogowanego pacjenta, ktory zapisuje sie do kolejki
+            pacjent zalogowany_pacjent = db.pacjent.FirstOrDefault(i => i.AspNetUsers.Email == email_zalogowanego_pacjenta);
+            if (zalogowany_pacjent != null)
+            {
+                zapis.id_pacjenta = zalogowany_pacjent.id_pacjent;
+            }
+            int ilosc_w_kolejce = 0;
+            var temp = db.zapis.Include(z => z.lekarz).Include(z => z.pacjent).ToList();
+            zapis.godzina = new TimeSpan(0, 480+ ilosc_w_kolejce, 0);
             if (ModelState.IsValid)
             {
-                db.zapis.Add(zapis);
-                db.SaveChanges();
+                /*db.zapis.Add(zapis);
+                db.SaveChanges();*/
                 return RedirectToAction("Index");
             }
 

@@ -116,7 +116,7 @@
           <Property Name="id_pacjent" Type="int" />
           <Property Name="id_badanie" Type="int" />
           <Property Name="id_lekarz" Type="int" />
-          <Property Name="data_wystawienia" Type="datetime" />
+          <Property Name="data_wystawienia" Type="date" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -139,14 +139,14 @@
           <Property Name="id_badanie" Type="int" />
           <Property Name="id_lekarz" Type="int" />
           <Property Name="id_pacjent" Type="int" />
-          <Property Name="data_wizyty" Type="datetime" />
+          <Property Name="data_wizyty" Type="date" />
         </EntityType>
         <EntityType Name="zapis">
           <Key>
             <PropertyRef Name="id_zapisu" />
           </Key>
-          <Property Name="id_zapisu" Type="int" Nullable="false" />
-          <Property Name="id_pacjenta" Type="int" Nullable="false" />
+          <Property Name="id_zapisu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_pacjenta" Type="int" />
           <Property Name="id_lekarza" Type="int" />
           <Property Name="data" Type="date" />
           <Property Name="godzina" Type="time" Precision="7" />
@@ -173,10 +173,10 @@ warning 6002: The table/view 'ePrzychodnia.dbo.choroba_view' does not have a pri
           <Property Name="id_pacjent" Type="int" Nullable="false" />
           <Property Name="id_uzytkownika" Type="nvarchar" MaxLength="128" />
           <Property Name="nazwisko" Type="varchar" MaxLength="50" />
-          <Property Name="id_choroba" Type="int" Nullable="false" />
           <Property Name="nazwa_choroby" Type="varchar" MaxLength="50" />
           <Property Name="diagnoza" Type="varchar" MaxLength="250" />
           <Property Name="objawy" Type="varchar" MaxLength="100" />
+          <Property Name="id_choroba" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'ePrzychodnia.dbo.recepta_view' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -389,7 +389,7 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_zapis_pacjent1">
-          <End Role="pacjent" Type="Self.pacjent" Multiplicity="1" />
+          <End Role="pacjent" Type="Self.pacjent" Multiplicity="0..1" />
           <End Role="zapis" Type="Self.zapis" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="pacjent">
@@ -429,10 +429,10 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
     [choroba_view].[id_pacjent] AS [id_pacjent], 
     [choroba_view].[id_uzytkownika] AS [id_uzytkownika], 
     [choroba_view].[nazwisko] AS [nazwisko], 
-    [choroba_view].[id_choroba] AS [id_choroba], 
     [choroba_view].[nazwa_choroby] AS [nazwa_choroby], 
     [choroba_view].[diagnoza] AS [diagnoza], 
-    [choroba_view].[objawy] AS [objawy]
+    [choroba_view].[objawy] AS [objawy], 
+    [choroba_view].[id_choroba] AS [id_choroba]
     FROM [dbo].[choroba_view] AS [choroba_view]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="recepta_view" EntityType="Self.recepta_view" store:Type="Views" store:Schema="dbo">
@@ -646,7 +646,7 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
           <Property Name="id_pacjent" Type="Int32" />
           <Property Name="id_badanie" Type="Int32" />
           <Property Name="id_lekarz" Type="Int32" />
-          <Property Name="data_wystawienia" Type="DateTime" Precision="3" />
+          <Property Name="data_wystawienia" Type="DateTime" Precision="0" />
           <NavigationProperty Name="wizyta" Relationship="Self.FK_wizyta_skierowanie" FromRole="skierowanie" ToRole="wizyta" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -670,7 +670,7 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
           <Property Name="id_badanie" Type="Int32" />
           <Property Name="id_lekarz" Type="Int32" />
           <Property Name="id_pacjent" Type="Int32" />
-          <Property Name="data_wizyty" Type="DateTime" Precision="3" />
+          <Property Name="data_wizyty" Type="DateTime" Precision="0" />
           <NavigationProperty Name="badanie" Relationship="Self.FK_wizyta_badanie" FromRole="wizyta" ToRole="badanie" />
           <NavigationProperty Name="choroba" Relationship="Self.FK_wizyta_choroba" FromRole="wizyta" ToRole="choroba" />
           <NavigationProperty Name="recepta" Relationship="Self.FK_wizyta_recepta" FromRole="wizyta" ToRole="recepta" />
@@ -882,7 +882,7 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
             <End Role="pacjent" EntitySet="pacjent" />
             <End Role="zapis" EntitySet="zapis" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <Association Name="FK_lekarz_AspNetUsers">
           <End Type="ePrzychodniaModel.AspNetUsers" Role="AspNetUsers" Multiplicity="0..1" />
           <End Type="ePrzychodniaModel.lekarz" Role="lekarz" Multiplicity="*" />
@@ -952,8 +952,8 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
           <Key>
             <PropertyRef Name="id_zapisu" />
           </Key>
-          <Property Name="id_zapisu" Type="Int32" Nullable="false" />
-          <Property Name="id_pacjenta" Type="Int32" Nullable="false" />
+          <Property Name="id_zapisu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_pacjenta" Type="Int32" />
           <Property Name="id_lekarza" Type="Int32" />
           <Property Name="data" Type="DateTime" Precision="0" />
           <Property Name="godzina" Type="Time" Precision="7" />
@@ -973,7 +973,7 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_zapis_pacjent1">
-          <End Type="ePrzychodniaModel.pacjent" Role="pacjent" Multiplicity="1" />
+          <End Type="ePrzychodniaModel.pacjent" Role="pacjent" Multiplicity="0..1" />
           <End Type="ePrzychodniaModel.zapis" Role="zapis" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="pacjent">
@@ -984,7 +984,7 @@ warning 6002: The table/view 'ePrzychodnia.dbo.skierowanie_view' does not have a
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
