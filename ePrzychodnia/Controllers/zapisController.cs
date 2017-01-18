@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ePrzychodnia.Models;
+using Microsoft.AspNet.Identity;
 
 namespace ePrzychodnia.Controllers
 {
+    [Authorize(Roles = "Pacjent")]
     public class zapisController : Controller
     {
         private ePrzychodniaEntities db = new ePrzychodniaEntities();
@@ -17,6 +19,10 @@ namespace ePrzychodnia.Controllers
         // GET: zapis
         public ActionResult Index()
         {
+            string userID = User.Identity.GetUserId();
+            pacjent zalogowany_pacjent = db.pacjent.FirstOrDefault(i => i.id_uzytkownika == userID);
+            var id_pacjent = zalogowany_pacjent.id_pacjent;
+            ViewBag.Data = id_pacjent;
             var zapis = db.zapis.Include(z => z.lekarz).Include(z => z.pacjent);
             return View(zapis.ToList());
         }

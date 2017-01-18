@@ -105,7 +105,7 @@ namespace ePrzychodnia.Controllers
                 db.Entry(pacjent).State = EntityState.Modified;
                 pacjent.id_uzytkownika = org_id;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Manage");
             }
             return View(pacjent);
         }

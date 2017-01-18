@@ -11,13 +11,18 @@ namespace ePrzychodnia.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
     public partial class badania_view
     {
+        [DisplayName("Numer u¿ytkownika")]
         public string id_uzytkownika { get; set; }
+        [DisplayName("Nazwisko lekarza")]
         public string Nazwisko_lekarza { get; set; }
+        [DisplayName("Numer badania")]
         public int id_badanie { get; set; }
+        [DisplayName("Data badania")]
         public Nullable<System.DateTime> Data_badania { get; set; }
+        [DisplayName("Opis badania")]
         public string C_Opis_badania { get; set; }
     }
 }

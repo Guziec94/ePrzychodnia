@@ -11,7 +11,7 @@ namespace ePrzychodnia.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
     public partial class recepta
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,9 +21,13 @@ namespace ePrzychodnia.Models
         }
     
         public int id_recepta { get; set; }
+        [DisplayName("Numer pacjenta")]
         public Nullable<int> id_pacjent { get; set; }
+        [DisplayName("Numer lekarza")]
         public Nullable<int> id_lekarz { get; set; }
+        [DisplayName("Leki i dawkowanie")]
         public string lek_i_dawkowanie { get; set; }
+        [DisplayName("Data wystawienia")]
         public Nullable<System.DateTime> data_wystawienia { get; set; }
     
         public virtual lekarz lekarz { get; set; }

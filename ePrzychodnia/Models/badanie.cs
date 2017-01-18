@@ -11,7 +11,7 @@ namespace ePrzychodnia.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
     public partial class badanie
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,11 +19,15 @@ namespace ePrzychodnia.Models
         {
             this.wizyta = new HashSet<wizyta>();
         }
-    
+        [DisplayName("Numer badania")]
         public int id_badanie { get; set; }
+        [DisplayName("Numer lekarza")]
         public Nullable<int> id_lekarz { get; set; }
+        [DisplayName("Numer pacjenta")]
         public Nullable<int> id_pacjent { get; set; }
+        [DisplayName("Opis badania")]
         public string opis_badania { get; set; }
+        [DisplayName("Data badania")]
         public Nullable<System.DateTime> data_badania { get; set; }
     
         public virtual lekarz lekarz { get; set; }

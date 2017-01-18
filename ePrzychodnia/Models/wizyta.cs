@@ -11,16 +11,24 @@ namespace ePrzychodnia.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
     public partial class wizyta
     {
+
         public int id_wizyta { get; set; }
+        [DisplayName("Numer skierowania")]
         public Nullable<int> id_skierowanie { get; set; }
+        [DisplayName("Numer recepty")]
         public Nullable<int> id_recepta { get; set; }
+        [DisplayName("Numer choroby")]
         public Nullable<int> id_choroba { get; set; }
+        [DisplayName("Numer badania")]
         public Nullable<int> id_badanie { get; set; }
+        [DisplayName("Numer lekarza")]
         public Nullable<int> id_lekarz { get; set; }
+        [DisplayName("Numer pacjenta")]
         public Nullable<int> id_pacjent { get; set; }
+        [DisplayName("Data wizyty")]
         public Nullable<System.DateTime> data_wizyty { get; set; }
     
         public virtual badanie badanie { get; set; }

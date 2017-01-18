@@ -11,13 +11,17 @@ namespace ePrzychodnia.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
     public partial class zapis
     {
         public int id_zapisu { get; set; }
+        [DisplayName("Numer Pacjenta")]
         public Nullable<int> id_pacjenta { get; set; }
+        [DisplayName("Numer Lekarza")]
         public Nullable<int> id_lekarza { get; set; }
+        [DisplayName("Data")]
         public DateTime? data { get; set; }
+        [DisplayName("Godzina")]
         public TimeSpan? godzina { get; set; }
     
         public virtual lekarz lekarz { get; set; }

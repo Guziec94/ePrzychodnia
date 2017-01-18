@@ -11,7 +11,7 @@ namespace ePrzychodnia.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
     public partial class pacjent
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,10 +23,15 @@ namespace ePrzychodnia.Models
         }
     
         public int id_pacjent { get; set; }
+        [DisplayName("Nazwisko pacjenta")]
         public string nazwisko { get; set; }
+        [DisplayName("Imie")]
         public string imie { get; set; }
+        [DisplayName("Wiek")]
         public Nullable<int> wiek { get; set; }
+        [DisplayName("PESEL")]
         public string pesel { get; set; }
+        [DisplayName("Numer telefonu")]
         public string telefon { get; set; }
         public string id_uzytkownika { get; set; }
         public string UserRoles { get; set; } = "Pacjent";
