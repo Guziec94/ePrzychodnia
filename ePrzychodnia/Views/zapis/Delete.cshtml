@@ -1,14 +1,13 @@
 ﻿@model ePrzychodnia.Models.zapis
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Odwołanie wizyty";
 }
 
-<h2>Delete</h2>
+<h2>Odwołanie wizyty</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Czy na pewno chcesz odwołać tą wizytę?</h3>
 <div>
-    <h4>zapis</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -50,7 +49,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Odwołaj wizytę" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Powróć do listy", "Index")
         </div>
     }
 </div>

@@ -45,7 +45,12 @@ namespace ePrzychodnia.Controllers
         // GET: zapis/Create
         public ActionResult Create()
         {
-            ViewBag.id_lekarza = new SelectList(db.lekarz, "id_lekarz", "nazwisko");
+            var lista_lekarzy = db.lekarz.Select(s => new
+            {
+                id_lekarza = s.id_lekarz,
+                nazwisko = "dr "+s.imie + " " + s.nazwisko
+            }).ToList();
+            ViewBag.id_lekarza = new SelectList(lista_lekarzy, "id_lekarza", "nazwisko");
             var dzisiaj = DateTime.Now;
             dzisiaj = dzisiaj.AddDays(1);
             ViewBag.data = dzisiaj.ToString("yyyy-MM-dd");

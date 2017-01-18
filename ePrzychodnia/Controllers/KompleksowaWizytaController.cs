@@ -30,10 +30,17 @@ namespace ePrzychodnia.Controllers
         // GET: KompleksowaWizyta/Create
         public ActionResult Create()
         {
+            var lista_pacjentow = db.pacjent.Select(s => new
+            {
+                id_pacjent = s.id_pacjent,
+                nazwisko = s.imie+" "+s.nazwisko
+            }).ToList();
+            ViewBag.id_pacjent = new SelectList(lista_pacjentow, "id_pacjent", "nazwisko");
             KompleksowaWizyta mod = new KompleksowaWizyta();
             mod.wypelnione_badanie = false;
             mod.wypelnione_choroba = false;
             mod.wypelnione_recepta = false;
+            ViewBag.data = DateTime.Now.ToString("yyyy-MM-dd");
             return View(mod);
         }
 

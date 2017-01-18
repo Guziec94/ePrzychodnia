@@ -281,7 +281,6 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="images\logo.png" />
-    <Content Include="Views\Home\logo.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
