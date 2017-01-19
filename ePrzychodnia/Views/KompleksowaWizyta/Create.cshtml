@@ -15,7 +15,7 @@
         <h4>Podaj szczegóły tej wizyty</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        
+        @ViewBag.id_pacjent
         <div class="form-group">
             @Html.LabelFor(model => model.id_pacjent, "Pacjent", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -161,11 +161,11 @@
         $("#wypelnione_choroba")[0].onclick = function () { toggle_visible(3) }
         if (("http://" + window.location.host + "/KompleksowaWizyta/Create" == window.location.href.toString())||("http://" + window.location.host + "/KompleksowaWizyta/Create/" == window.location.href.toString()))
         {
-            document.getElementById("id_pacjent").disabled = false;
+            //document.getElementById("id_pacjent").disabled = false;
         }
         else
         {
-            document.getElementById("id_pacjent").disabled = true;
+            //document.getElementById("id_pacjent").disabled = true;
         }
     }
     function toggle_visible(nr_klasy) {

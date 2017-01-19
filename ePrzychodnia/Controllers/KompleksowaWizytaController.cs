@@ -48,11 +48,13 @@ namespace ePrzychodnia.Controllers
                 zapis wczytany_zapis = db.zapis.FirstOrDefault(z => z.id_zapisu == id);
                 mod.id_pacjent = ViewBag.id_pacjent2 = (int)wczytany_zapis.id_pacjenta;
                 ViewBag.id_pacjent2 = 1;
-                ViewBag.id_pacjent = new SelectList(db.pacjent.Select(s => new
+                var lista_pacjentow2 = db.pacjent.Select(s => new
                 {
                     id_pacjent = s.id_pacjent,
                     nazwisko = s.imie + " " + s.nazwisko
-                }).Where(s=>s.id_pacjent==wczytany_zapis.id_pacjenta).ToList(), "id_pacjent", "nazwisko");
+                }).Where(s => s.id_pacjent == wczytany_zapis.id_pacjenta).ToList();
+
+                ViewBag.id_pacjent = new SelectList(lista_pacjentow2, "id_pacjent", "nazwisko");
             }
             return View(mod);
         }
