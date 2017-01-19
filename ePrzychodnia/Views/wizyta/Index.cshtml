@@ -37,31 +37,50 @@
     {
         if (item.id_lekarz == ViewBag.data)
         {
-    <tr>
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.id_pacjent)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.data_wizyty)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.badanie.opis_badania)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.choroba.nazwa_choroby)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.recepta.lek_i_dawkowanie)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.skierowanie.id_skierowanie)
-        </td>
-      
-    </tr>
+        <tr>  
+            <td>
+                @Html.DisplayFor(modelItem => item.id_pacjent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.data_wizyty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.badanie.opis_badania)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.choroba.nazwa_choroby)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.recepta.lek_i_dawkowanie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.skierowanie.id_skierowanie)
+            </td>
+        </tr>
         }
     }
-
 }
 
+</table>
+    <!--Obsluga listy zapisow-->
+<hr />
+<h2>Oczekujące wizyty</h2>
+<table class="table">
+    @foreach (var zapis in ViewBag.lista_zapisow)
+    {
+    <tr>
+        <td>
+            @zapis.pacjent.imie
+        </td>
+        <td>
+            @zapis.pacjent.nazwisko
+        </td>
+        <td>
+            @zapis.godzina
+        </td>
+        <td>
+            @Html.ActionLink("Dodaj wizytę", "Create", "KompleksowaWizyta", new { id = zapis.id_zapisu }, null)
+        </td>
+    </tr>
+    }
 </table>
