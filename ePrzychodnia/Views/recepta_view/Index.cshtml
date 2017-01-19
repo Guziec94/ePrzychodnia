@@ -45,10 +45,11 @@
     {
         if (item.id_uzytkownika == ViewBag.data)
         {
+            var data = item.Data_wystawienia.ToString().Substring(0, 10);
             <tr>
                 
                 <td>
-                    @Html.DisplayFor(modelItem => item.Data_wystawienia)
+                    @Html.DisplayFor(modelItem => data)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Nazwa_leku_i_dawkowanie)

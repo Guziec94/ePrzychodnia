@@ -24,6 +24,7 @@ namespace ePrzychodnia.Controllers
             var id_pacjent = zalogowany_pacjent.id_pacjent;
             ViewBag.Data = id_pacjent;
             var zapis = db.zapis.Include(z => z.lekarz).Include(z => z.pacjent);
+            
             return View(zapis.ToList());
         }
 
@@ -86,7 +87,7 @@ namespace ePrzychodnia.Controllers
             {
                 db.zapis.Add(zapis);
                 db.SaveChanges();
-                return Content("<script language='javascript' type='text/javascript'>alert('Zapisałeś/aś się do lekarza na najbliższy termin tj.: "+((DateTime)zapis.data).ToString("yyyy-MM-dd") + " "+zapis.godzina+"');window.location.href =\"http://localhost:1768/home/index\";</script>");
+                return Content("<script language='javascript' type='text/javascript'>alert('Zapisałeś/aś się do lekarza na najbliższy termin tj.: "+((DateTime)zapis.data).ToString("yyyy-MM-dd") + " "+zapis.godzina+"');window.location.href =\"http://localhost:1768/zapis/index\";</script>");
             }
 
             ViewBag.id_lekarza = new SelectList(db.lekarz, "id_lekarz", "nazwisko", zapis.id_lekarza);
