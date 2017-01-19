@@ -28,7 +28,7 @@ namespace ePrzychodnia.Controllers
         }
 
         // GET: KompleksowaWizyta/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
             var lista_pacjentow = db.pacjent.Select(s => new
             {
@@ -41,6 +41,19 @@ namespace ePrzychodnia.Controllers
             mod.wypelnione_choroba = false;
             mod.wypelnione_recepta = false;
             ViewBag.data = DateTime.Now.ToString("yyyy-MM-dd");
+
+            ViewBag.id_pacjent2 = -1;
+            if (id!=null)
+            {
+                zapis wczytany_zapis = db.zapis.FirstOrDefault(z => z.id_zapisu == id);
+                mod.id_pacjent = ViewBag.id_pacjent2 = (int)wczytany_zapis.id_pacjenta;
+                ViewBag.id_pacjent2 = 1;
+                ViewBag.id_pacjent = new SelectList(db.pacjent.Select(s => new
+                {
+                    id_pacjent = s.id_pacjent,
+                    nazwisko = s.imie + " " + s.nazwisko
+                }).Where(s=>s.id_pacjent==wczytany_zapis.id_pacjenta).ToList(), "id_pacjent", "nazwisko");
+            }
             return View(mod);
         }
 
