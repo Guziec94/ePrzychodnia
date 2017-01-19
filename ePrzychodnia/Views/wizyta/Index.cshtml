@@ -37,13 +37,14 @@
     {
         if (item.id_lekarz == ViewBag.data)
         {
+            var data = item.data_wizyty.ToString().Substring(0, 10);
     <tr>
        
         <td>
             @Html.DisplayFor(modelItem => item.id_pacjent)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.data_wizyty)
+            @Html.DisplayFor(modelItem => data)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.badanie.opis_badania)

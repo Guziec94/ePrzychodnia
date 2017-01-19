@@ -31,9 +31,10 @@
     {
         if (item.id_pacjenta == ViewBag.data)
         {
+            var data=item.data.ToString().Substring(0,10);
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.data)
+            @Html.DisplayFor(modelItem => data)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.godzina)
